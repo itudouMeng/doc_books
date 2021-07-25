@@ -166,7 +166,7 @@ $$
 \begin{cases}
 x=r\cdot\cos\theta=v't\cdot\cos(\theta'+\omega t)\\
 y=r\cdot\sin\theta=v't\cdot\sin(\theta'+\omega t)
-\end{cases}
+\end{cases}\tag{meng}
 $$
 
 用软件对其进行运动分析，得到的运动示意图如下图所示。
@@ -174,4 +174,11 @@ $$
 ![trail](polar-coordinate.assets/trail.gif)
 
 ## 应用
+
+```
+function find()
+	for i=1:10
+	
+end
+```
 

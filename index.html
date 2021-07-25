@@ -12,13 +12,14 @@
   <div id="app">Please wait...</div>
   <script>
     window.$docsify = {
-      name: '',
+      name: 'docs',
       repo: 'https://github.com/itudouMeng',
 	  coverpage:true,
 	  
 	  loadSidebar:'README.md',
+	  loadNavbar:true,
 	  
-	  loadNavbar:true
+	  search:'auro',
     }
   </script>
   <!-- Docsify v4 -->
@@ -26,5 +27,10 @@
   <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
   
   <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  
+  <!-- CDN files for docsify-katex -->
+  <script src="//cdn.jsdelivr.net/gh/upupming/docsify-katex@latest/dist/docsify-katex.js"></script>
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css"/>
+
 </body>
 </html>
