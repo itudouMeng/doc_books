@@ -1,5 +1,7 @@
 ![logo](https://docsify.js.org/_media/icon.svg)
-# Meng
+
+# Meng<small>1.0</small>
 
 [GitHub](https://github.com/itudouMeng)
-[Get Started](#quick-start)
+[Get Started](#Summary)
+
