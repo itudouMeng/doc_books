@@ -42,5 +42,5 @@ dim(C(A))+dim(N(A^T))=m
 \end{aligned}
 $$
 
-
+![](linear-algebra.assets/untitled.svg)
 

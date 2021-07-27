@@ -164,7 +164,7 @@ $$
 
 $$
 \begin{cases}
-x=r\cdot\cos\theta=v't\cdot\cos(\theta'+\omega t)\\
+x=r\cdot\cos\theta=v't\cdot\cos(\theta'+\omega t) \\
 y=r\cdot\sin\theta=v't\cdot\sin(\theta'+\omega t)
 \end{cases}\tag{meng}
 $$
