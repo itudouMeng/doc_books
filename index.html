@@ -7,6 +7,7 @@
   <meta name="description" content="Description">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">
+  <link rel="stylesheet" href="https://unpkg.com/docsify-toc@1.0.0/dist/toc.css">
 </head>
 <body>
   <div id="app"></div>
@@ -44,6 +45,12 @@
 			crossChapter: true,
 			crossChapterText: true,
 		},
+		
+		toc: {
+			scope: '.markdown-section',
+			headings: 'h1, h2, h3, h4, h5, h6',
+			title: 'Table of Contents',
+		},
 	}
   </script>
 
@@ -54,7 +61,7 @@
 	<script>
 		const gitalk = new Gitalk({
 			clientID: '10a8da90c16c10b38f55',
-			clientSecret: '332bf047e0e5cccad643bc211225844c91ef36b8',
+			clientSecret: 'd412aec4d0954892190308ec66a5af72a4a25fc5',
 			repo: 'doc_books',
 			owner: 'itudouMeng',
 			admin: ['itudouMeng'],
@@ -96,6 +103,10 @@
   
   <!-- pages -->
   <script src="//unpkg.com/docsify-pagination/dist/docsify-pagination.min.js"></script> 
+  <script src="//unpkg.com/docsify-slides/dist/docsify-slides.min.js"></script>
   
+  <!-- code -->
+  <script src="//unpkg.com/@rakutentech/docsify-code-inline/dist/index.min.js"></script>
+  <script src="https://unpkg.com/docsify-copy-code"></script>
 </body>
 </html>
