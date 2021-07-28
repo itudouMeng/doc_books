@@ -7,7 +7,6 @@
   <meta name="description" content="Description">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk/dist/gitalk.css">
 </head>
 <body>
   <div id="app"></div>
@@ -45,22 +44,27 @@
 			crossChapter: true,
 			crossChapterText: true,
 		},
-					const gitalk = new Gitalk({
-			clientID: '10a8da90c16c10b38f55',
-			clientSecret: '332bf047e0e5cccad643bc211225844c91ef36b8',
-			repo: 'https://itudoumeng.github.io/doc_books',
-			owner: 'itudouMeng',
-			admin: ['itudouMeng'],
-			// facebook-like distraction free mode
-			distractionFreeMode: false,
-		}),
-	},
-
+	}
   </script>
 
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk/dist/gitalk.css">
 
 
+<!-- gitalk -->
 
+<script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/gitalk.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.js"></script>
+<script>
+  const gitalk = new Gitalk({
+    clientID: '10a8da90c16c10b38f55',
+    clientSecret: '332bf047e0e5cccad643bc211225844c91ef36b8',
+    repo: 'https://itudoumeng.github.io/doc_books',
+    owner: 'itudouMeng',
+    admin: ['itudouMeng'],
+    // facebook-like distraction free mode
+    distractionFreeMode: false
+  })
+</script>
 
   <style type="text/css">
 	.content {
@@ -95,8 +99,5 @@
   <!-- pages -->
   <script src="//unpkg.com/docsify-pagination/dist/docsify-pagination.min.js"></script>  
   
-  <!-- gitalk -->
-  <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/gitalk.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.js"></script>
 </body>
 </html>
