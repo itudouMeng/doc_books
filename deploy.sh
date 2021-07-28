@@ -6,3 +6,5 @@ sed -i '$a ```' README.md
 git add .
 git commit -m "math"
 git push
+
+docsify serve
