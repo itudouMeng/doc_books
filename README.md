@@ -2,7 +2,6 @@
 ```
 .
 |-- README.md
-|-- _coverpage.assets
 |-- _coverpage.md
 |-- _sidebar.md
 |-- deploy.sh
@@ -24,5 +23,5 @@
     |   `-- 220px-Mass_spring_damper.svg.png
     `-- spring-mass-damper.md
 
-7 directories, 15 files
+6 directories, 15 files
 ```
