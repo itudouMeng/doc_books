@@ -20,7 +20,7 @@
     |-- polar-coordinate.ggb
     |-- polar-coordinate.md
     |-- spring-mass-damper.assets
-    |   `-- 220px-Mass_spring_damper.svg.png
+    |   `-- Mass_spring_damper.svg
     `-- spring-mass-damper.md
 
 6 directories, 15 files
