@@ -173,12 +173,7 @@ $$
 
 ![trail](polar-coordinate.assets/trail.gif)
 
-## 应用
+[click me](https://www.geogebra.org/m/ywfqejcu ':include :type=iframe width=100% height=600px')
 
-```
-function find()
-	for i=1:10
-	
-end
-```
+## 应用
 
