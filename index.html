@@ -59,8 +59,8 @@
 			owner: 'itudouMeng',
 			admin: ['itudouMeng'],
 			// facebook-like distraction free mode
-			distractionFreeMode: false
-			id: decodeURI(window.location.pathname)
+			distractionFreeMode: false,
+			id: md5(window.location.pathname),
 		})
 	</script>
 
@@ -95,7 +95,9 @@
   <script src="//unpkg.com/docsify-count/dist/countable.js"></script>
   
   <!-- pages -->
-  <script src="//unpkg.com/docsify-pagination/dist/docsify-pagination.min.js"></script>  
+  <script src="//unpkg.com/docsify-pagination/dist/docsify-pagination.min.js"></script> 
+
+  <script src="https://github.com/blueimp/JavaScript-MD5/tree/master/js/md5.min.js"></script>
   
 </body>
 </html>
