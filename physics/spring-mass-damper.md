@@ -68,5 +68,3 @@ end %
 end % SMDode.m
 ```
 
-$\upsilon$
-
