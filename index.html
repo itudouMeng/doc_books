@@ -50,16 +50,22 @@
 			crossChapterText: true,
 		},
 	}
-	const gitalk= new Gittalk({
-		clientID:'10a8da90c16c10b38f55',
-		clientSecret:'332bf047e0e5cccad643bc211225844c91ef36b8',
-		repo:'doc_books',
-		owner:'Meng',
-		admin:['Meng'],
-		distractionFreeMode:false,//facebook-like distraction free mode
-    })
   </script>
   
+  <div id="gitalk-container"></div>     
+  <script type="text/javascript">
+    var gitalk = new Gitalk({
+    // gitalk的主要参数
+        clientID: '10a8da90c16c10b38f55',
+        clientSecret: '332bf047e0e5cccad643bc211225844c91ef36b8',
+        repo: '自己博客的地址',
+        owner: 'itudouMeng',
+        admin: ['itudouMeng'],
+        id:window.location.pathname,
+
+    });
+    gitalk.render('gitalk-container');
+  </script>
   <style type="text/css">
   .content {
   overflow: auto;
