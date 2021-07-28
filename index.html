@@ -61,7 +61,7 @@
         repo: 'https://itudoumeng.github.io/doc_books',
         owner: 'itudouMeng',
         admin: ['itudouMeng'],
-        id:window.location.pathname,
+        id: decodeURI(window.location.pathname),
     });
     gitalk.render('gitalk-container');
   </script>
