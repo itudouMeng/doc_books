@@ -1,8 +1,10 @@
-# 弹簧阻尼模型
+# 实际模型
 
  弹簧阻尼模型(mass-spring-damper model)是一种基本模型。
 
 ![mass_spring_damper](spring-mass-damper.assets/mass_spring_damper.svg)
+
+# MATLAB代码
 
 ```matlab
 function SMDode(Mass,Damping, Stiffness)
