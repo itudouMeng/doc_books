@@ -1,4 +1,6 @@
-# 实际模型
+# mass-spring-damper model
+
+## 实际模型
 
  弹簧阻尼模型(mass-spring-damper model)是一种基本模型。
 
