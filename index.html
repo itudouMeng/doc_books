@@ -7,14 +7,14 @@
   <meta name="description" content="Description">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">
-  <link rel="stylesheet" href="https://unpkg.com/docsify-toc@1.0.0/dist/toc.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk/dist/gitalk.css">
 </head>
 <body>
   <div id="app"></div>
   <script>
     window.$docsify = {
 		name: 'docs',
-		repo: 'https://github.com/itudouMeng/doc_books',
+		repo: 'https://github.com/itudouMeng',
 		coverpage:true,
 	  	  
 		loadSidebar:true,
@@ -31,7 +31,6 @@
 			'/': 'search'
 			}
 		},
-		
 		count: {
 			countable:true,
 			fontsize:'0.9em',
@@ -45,17 +44,9 @@
 			crossChapter: true,
 			crossChapterText: true,
 		},
-		
-		toc: {
-			scope: '.markdown-section',
-			headings: 'h1, h2, h3, h4, h5, h6',
-			title: 'Table of Contents',
-		},
-	}
+    }
   </script>
-
-	<!-- gitalk -->
-	<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk/dist/gitalk.css">
+  	<!-- gitalk -->
 	<script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/gitalk.min.js"></script>
 	<script src="//cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.js"></script>
 	<script>
@@ -66,16 +57,16 @@
 			owner: 'itudouMeng',
 			admin: ['itudouMeng'],
 			// facebook-like distraction free mode
-			distractionFreeMode: false,
+			distractionFreeMode: true,
 			id: decodeURI(window.location.pathname),
 		})
 	</script>
-
   <style type="text/css">
-	.content {
-	overflow: auto;
+  .content {
+  overflow: auto;
   }
   </style>
+  
 
   <!-- Docsify v4 -->
   <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
@@ -92,21 +83,20 @@
   <script src="//cdn.jsdelivr.net/npm/docsify-sidebar-collapse/dist/docsify-sidebar-collapse.min.js"></script>
   
   
-  <script id="MathJax-script" async src="./mathjax/tex-chtml.js"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
   <!-- CDN files for docsify-katex -->
   <script src="//cdn.jsdelivr.net/npm/docsify-katex@latest/dist/docsify-katex.js"></script>
   <!-- or <script src="//cdn.jsdelivr.net/gh/upupming/docsify-katex@latest/dist/docsify-katex.js"></script> -->
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css"/>
-
+  
   <!-- count -->
   <script src="//unpkg.com/docsify-count/dist/countable.js"></script>
   
   <!-- pages -->
   <script src="//unpkg.com/docsify-pagination/dist/docsify-pagination.min.js"></script> 
-  <script src="//unpkg.com/docsify-slides/dist/docsify-slides.min.js"></script>
   
   <!-- code -->
-  <script src="//unpkg.com/@rakutentech/docsify-code-inline/dist/index.min.js"></script>
   <script src="https://unpkg.com/docsify-copy-code"></script>
+	
 </body>
 </html>
