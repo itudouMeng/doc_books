@@ -42,5 +42,5 @@ dim(C(A))+dim(N(A^T))=m
 \end{aligned}
 $$
 
-![](linear-algebra.assets/untitled.svg)
+[超赞的线性代数讲义](https://www.bilibili.com/video/BV1bb411H7JN?p=16&spm_id_from=pageDriver ':include :type=iframe width=100% height=600px')
 
