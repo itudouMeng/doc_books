@@ -11,7 +11,8 @@
 |-- index.html
 |-- math
 |   |-- linear-algebra.assets
-|   |   `-- untitled.svg
+|   |   |-- image-20210801203242634.png
+|   |   `-- refelction-matrix.svg
 |   `-- linear-algebra.md
 |-- physics
 |   |-- polar-coordinate.assets
@@ -20,9 +21,8 @@
 |   |-- polar-coordinate.ggb
 |   |-- polar-coordinate.md
 |   |-- spring-mass-damper.assets
-|   |   `-- Mass_spring_damper.svg
-|   |-- spring-mass-damper.md
-|   `-- test.md
+|   |   `-- mass_spring_damper.svg
+|   `-- spring-mass-damper.md
 `-- prism
     |-- prism.css
     `-- prism.js
