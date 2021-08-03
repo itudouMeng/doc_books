@@ -11,8 +11,11 @@
 |-- index.html
 |-- math
 |   |-- linear-algebra.assets
-|   |   |-- image-20210801203242634.png
-|   |   `-- refelction-matrix.svg
+|   |   |-- projection-onto-column-space.png
+|   |   |-- projection-onto-line.png
+|   |   |-- refelction-matrix.svg
+|   |   |-- rotate-matrix.png
+|   |   `-- spherical-coordinate.png
 |   `-- linear-algebra.md
 |-- physics
 |   |-- polar-coordinate.assets
@@ -27,5 +30,5 @@
     |-- prism.css
     `-- prism.js
 
-7 directories, 18 files
+7 directories, 21 files
 ```
