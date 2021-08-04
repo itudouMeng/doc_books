@@ -26,16 +26,18 @@ I&F\\
 \end{aligned}
 $$
 
-
-
-矩阵行空间的维度和零空间的维度组成，即有表达式：
+矩阵的行空间与零空间的维数之和为矩阵的列数$n$​，并且两个子空间相互正交:
 $$
-\begin{aligned}
-rank(A)=rank(A^T)=r\\
 dim(C(A^T))+dim(N(A))=n\\
-dim(C(A))+dim(N(A^T))=m
-\end{aligned}
+C(A^T)\cdot N(A)=0
 $$
+矩阵的列空间与左零空间维数之和为矩阵的行数$m$，并且两个子空间相互正交：
+$$
+dim(C(A))+dim(N(A^T))=m\\
+C(A)\cdot N(A^T)=0
+$$
+![4-subspaces](linear-algebra.assets/4-subspaces.png)
+
 
 <iframe src=https://www.bilibili.com/video/BV1bb411H7JN?p=16
         name="超赞的线性代数讲义"
@@ -45,6 +47,7 @@ $$
         scrolling="auto"
         sandbox="allow-scripts allow-forms allow-same-origin">
 </iframe>
+
 
 
 ## 投影矩阵
@@ -172,22 +175,24 @@ P=\left[\begin{matrix}\cos2\theta&\sin2\theta\\\sin2\theta&-\cos2\theta\end{matr
 $$
 那么，平面坐标系下关于直线对称的矩阵变换是：
 $$
-\left[\begin{matrix}
+\begin{bmatrix}
 x'\\y'
-\end{matrix}\right]
-=\left[\begin{matrix}
+\end{bmatrix}
+=\begin{bmatrix}
 \cos2\theta&\sin2\theta\\
 \sin2\theta&-\cos2\theta
-\end{matrix}\right]
-\left[\begin{matrix}
+\end{bmatrix}
+\begin{bmatrix}
 x\\y
-\end{matrix}\right]
+\end{bmatrix}
 $$
-$P=\left[\begin{matrix}\cos2\theta&\sin2\theta\\\sin2\theta&-\cos2\theta\end{matrix}\right]$​​​​​​​也是一个正交矩阵​，满足：(1)$P^{-1}=P^{T}$​​​​，​(2)$P^2=I$
+$P=\begin{bmatrix}\cos2\theta&\sin2\theta\\\sin2\theta&-\cos2\theta\end{bmatrix}$​​​​​​​​也是一个正交矩阵​，满足：(1)$P^{-1}=P^{T}$​​​​​，​(2)$P^2=I$​
 
 
 
 ![refelction-matrix](linear-algebra.assets/refelction-matrix.svg)
+
+
 
 
 
