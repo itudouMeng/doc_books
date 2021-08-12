@@ -1,8 +1,8 @@
 # 向量空间
 
-## 子空间(subspace)
+## 子空间
 
-矩阵的四个基本子空间：行空间(row space)、列空间(column space)、零空间(null space)、左零空间(left null space)。
+矩阵的四个基本子空间(subspace)：行空间(row space)、列空间(column space)、零空间(null space)、左零空间(left null space)。
 
 - **行空间：矩阵行向量组成的线性空间，记为$C(A^T)$​​；**
 - **列空间：矩阵列向量组成的线性空间，记为$C(A)$；**
@@ -26,7 +26,7 @@ I&F\\
 \end{aligned}
 $$
 
-矩阵的行空间与零空间的维数之和为矩阵的列数$n$​，并且两个子空间相互正交:
+矩阵的行空间与零空间的维数之和为矩阵的列数$n$​​，并且两个子空间相互正交:
 $$
 dim(C(A^T))+dim(N(A))=n\\
 C(A^T)\cdot N(A)=0
@@ -80,9 +80,12 @@ $$
 \boldsymbol p=\boldsymbol a\hat x=\frac{\boldsymbol a\boldsymbol a^T}{\boldsymbol a^T\boldsymbol a}\boldsymbol b
 $$
 
-
-
 ![projection-onto-line](linear-algebra.assets/projection-onto-line.png)
+
+实际应用中，利用矩阵乘法和向量数乘性质，能够较快地得到向量投影计算式：
+$$
+\boldsymbol p=\frac{\boldsymbol a\boldsymbol a^T}{\boldsymbol a^T\boldsymbol a}\boldsymbol b=\boldsymbol a\frac{\boldsymbol a^T\boldsymbol b}{\boldsymbol a^T\boldsymbol a}=\hat x\boldsymbol a
+$$
 
 ## 旋转矩阵
 
@@ -146,10 +149,6 @@ $$
 Q=Q_{\alpha}Q_{\beta}Q_{\gamma}
 $$
 
-
-
-![spherical-coordinate](linear-algebra.assets/spherical-coordinate.png)
-
 ## 反射矩阵
 
 记向量关于直线$l$​​​​​​反射变换矩阵为$P$​​​​​​，即反射变换为：$\boldsymbol b\rightarrow P\boldsymbol b$​​​​​​。取直线$l$​​​​​​上单位方向向量$\boldsymbol u=[\cos\theta,\sin\theta]^T$​​​​​​和单位法向向量$\boldsymbol v=[\sin\theta,-\cos\theta]^T$​​​​​​作为一组基，关于直线$l$​​​​​​对称后的基为$\boldsymbol u'=\boldsymbol u=[\cos\theta,\sin\theta]^T$​​​​​​和$\boldsymbol v'=-\boldsymbol v=[-\sin\theta,\cos\theta]^T$​​​​​​​。就有表达式：
@@ -192,7 +191,78 @@ $P=\begin{bmatrix}\cos2\theta&\sin2\theta\\\sin2\theta&-\cos2\theta\end{bmatrix}
 
 ![refelction-matrix](linear-algebra.assets/refelction-matrix.svg)
 
+## 格拉姆-施密特正交化
 
+格拉姆-施密特正交化(Gram-Schmidt)方法一般用于一组标准规范基的构造，原理主要是利用原向量与投影向量的差向量正交于投影向量的性质。设有$n$​​​个线性无关的向量：$\boldsymbol a_{1},\boldsymbol a_{2},\cdots,\boldsymbol a_{n}$​​​，通过正交化方法最后形成一组标准规范基：$\boldsymbol q_{1},\boldsymbol q_{2},\cdots,\boldsymbol q_{n}$​​​。其正交化过程可以表述为：
+
+- step1:选取第一个元素，进行标准化​
+
+$$
+\boldsymbol q_{1}=\frac{\boldsymbol a_{1}}{\Vert\boldsymbol a_{1}\Vert}
+$$
+
+- step2:对第二个元素进行正交化，并且标准化
+$$
+\begin{cases}
+\boldsymbol q_{2}=\boldsymbol a_{2}-\frac{\boldsymbol q_{1}\boldsymbol q_{1}^T}{\boldsymbol q_{1}^T\boldsymbol q_{1}}\boldsymbol a_{2}\\
+\boldsymbol q_{2}=\frac{\boldsymbol q_{2}}{\Vert\boldsymbol q_{2}\Vert}
+\end{cases}
+$$
+
+- step3:利用投影矩阵的性质，对第三个元素进行正交化和标准化
+
+$$
+\begin{cases}
+\boldsymbol q_{3}=\boldsymbol a_{3}-\frac{\boldsymbol q_{1}\boldsymbol q_{1}^T}{\boldsymbol q_{1}^T\boldsymbol q_{1}}\boldsymbol a_{3}-\frac{\boldsymbol q_{2}\boldsymbol q_{2}^T}{\boldsymbol q_{2}^T\boldsymbol q_{2}}\boldsymbol a_{3}\\
+\boldsymbol q_{3}=\frac{\boldsymbol q_{3}}{\Vert\boldsymbol q_{3}\Vert}
+\end{cases}
+$$
+
+- ...
+- step n:依次类推，可以得到第$n$​​个规范基的表达式：
+
+$$
+\begin{cases}
+\boldsymbol q_{n}=\boldsymbol a_{n}-\frac{\boldsymbol q_{1}\boldsymbol q_{1}^T}{\boldsymbol q_{1}^T\boldsymbol q_{1}}\boldsymbol a_{n}-\frac{\boldsymbol q_{2}\boldsymbol q_{2}^T}{\boldsymbol q_{2}^T\boldsymbol q_{2}}\boldsymbol a_{n}-\cdots-\frac{\boldsymbol q_{n-1}\boldsymbol q_{n-1}^T}{\boldsymbol q_{n-1}^T\boldsymbol q_{n-1}}\boldsymbol a_{n}\\
+\boldsymbol q_{n}=\frac{\boldsymbol q_{n}}{\Vert\boldsymbol q_{n}\Vert}
+\end{cases}
+$$
+
+
+
+# 矩阵特征值和特征向量
+
+设$n$阶矩阵$A$有$n$个特征值(eigenvalues)，记为：$\lambda_{1},\lambda_{2},\cdots,\lambda_{n}$​，有：
+$$
+det(A-\lambda I)=\begin{vmatrix}
+a_{11}-\lambda&&&\\
+&a_{22}-\lambda&&\\
+&&\cdots&\\
+&&&a_{nn}-\lambda
+\end{vmatrix}
+=(\lambda_{1}-\lambda)(\lambda_{2}-\lambda)\cdots(\lambda_{n}-\lambda)=0
+$$
+根据方程根与系数之间的关系，展开可得到矩阵特征值与矩阵元素之间的关系，其中比较重要的有下面两条。
+
+- 矩阵的特征值之和等于该矩阵的迹(trace)，即矩阵的对角元素之和：
+
+$$
+\sum_{i=1}^{n} \lambda_{i}=trac(A)=\sum_{i=1}^{n} a_{ii}
+$$
+
+- 矩阵的特征值之积等于该矩阵的行列式(determinate)值，有：
+
+$$
+\prod_{i=1}^{n}\lambda_{i}=det(A)
+$$
+
+## <u>海森堡不确定性原则</u>
+
+> $AB-BA=I$ can happen for infinite matricies with $A=A^T$ and $B=-B^T$​​.Then
+> $$
+> x^Tx=x^TABx-x^TBAx \leq  2\Vert Ax \Vert\Vert Bx \Vert
+> $$
+> Explain that last step by using the Schwarz inequality$|u^Tv|\leq \Vert u \Vert\Vert v \vert$.Then Heisenberg's inequality says that $\Vert Ax \Vert/\Vert x \Vert$ times $\Vert Bx \Vert/\Vert x \Vert$​is at least ½­ It is impossible to get the position error and momentum error both very small.
 
 
 
