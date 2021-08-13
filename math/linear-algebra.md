@@ -1,3 +1,5 @@
+# 矩阵乘法
+
 # 向量空间
 
 ## 子空间
@@ -151,7 +153,7 @@ $$
 
 ## 反射矩阵
 
-记向量关于直线$l$​​​​​​反射变换矩阵为$P$​​​​​​，即反射变换为：$\boldsymbol b\rightarrow P\boldsymbol b$​​​​​​。取直线$l$​​​​​​上单位方向向量$\boldsymbol u=[\cos\theta,\sin\theta]^T$​​​​​​和单位法向向量$\boldsymbol v=[\sin\theta,-\cos\theta]^T$​​​​​​作为一组基，关于直线$l$​​​​​​对称后的基为$\boldsymbol u'=\boldsymbol u=[\cos\theta,\sin\theta]^T$​​​​​​和$\boldsymbol v'=-\boldsymbol v=[-\sin\theta,\cos\theta]^T$​​​​​​​。就有表达式：
+记向量关于直线$l$​​​​​​反射变换矩阵为$P$​​​​​​，即反射变换为：$\boldsymbol b\rightarrow P\boldsymbol b$​​​​​​。取直线$l$​​​​​​上单位方向向量$\boldsymbol u=[\cos\theta,\sin\theta]^T$​​​​​​和垂直于直线的单位法向向量$\boldsymbol v=[\sin\theta,-\cos\theta]^T$​​​​​​作为一组基，关于直线$l$​​​​​​对称后的基为$\boldsymbol u'=\boldsymbol u=[\cos\theta,\sin\theta]^T$​​​​​​和$\boldsymbol v'=-\boldsymbol v=[-\sin\theta,\cos\theta]^T$​​​​​​​。就有表达式：
 $$
 \begin{aligned}
 P\left[\begin{matrix}
@@ -186,10 +188,6 @@ x\\y
 \end{bmatrix}
 $$
 $P=\begin{bmatrix}\cos2\theta&\sin2\theta\\\sin2\theta&-\cos2\theta\end{bmatrix}$​​​​​​​​也是一个正交矩阵​，满足：(1)$P^{-1}=P^{T}$​​​​​，​(2)$P^2=I$​
-
-
-
-![refelction-matrix](linear-algebra.assets/refelction-matrix.svg)
 
 ## 格拉姆-施密特正交化
 
@@ -228,7 +226,45 @@ $$
 \end{cases}
 $$
 
+将正交化结果用矩阵形式表示，就有：
+$$
+A=QQ^TA=Q(Q^TA)=QR
+$$
 
+即有下式：
+$$
+\begin{bmatrix}
+\\
+\boldsymbol a_1&\boldsymbol a_2&\cdots&\boldsymbol a_n\\
+\\
+\end{bmatrix}=
+\begin{bmatrix}
+\\
+\boldsymbol q_1&\boldsymbol q_2&\cdots&\boldsymbol q_n\\
+\\
+\end{bmatrix}
+\begin{bmatrix}
+\boldsymbol q_{1}^T\boldsymbol a_{1}&\boldsymbol q_{1}^T\boldsymbol a_{2}&\cdots&\boldsymbol q_{1}^T\boldsymbol a_{n}\\
+&\boldsymbol q_{2}^T\boldsymbol a_{2}&\cdots&\boldsymbol q_{2}^T\boldsymbol a_{n}\\
+&&\ddots&\vdots\\
+&&&\boldsymbol q_{n}^{T}\boldsymbol a_{n}
+\end{bmatrix}
+$$
+
+上面的表达式就是我们通常意义上所说的QR分解，即$A=QR$​。​
+
+## 最小二乘法
+
+最小二乘法(least squares approximation)在统计学和工程计算中占有重要的地位，通过最小化误差来进行数据拟合。实际中，输入数据本身是存在误差的，精确解通常是无法得到的。一般情况下，对多组输入数据，我们可以得到一个矩阵方程：
+$$
+Ax=\boldsymbol b
+$$
+当方程数量大于未知数数量时（系数矩阵$A$的行数大于列数：$m>n$），原方程不一定存在解，这个时候最小二乘法就能求得一个近似解$\hat x$，某种程度上其是“最优解“，几何意义上平方差$error(x-\hat x)$​​最小。
+
+设最优解是$\hat x$​,那么最优解$\hat x$​在系数矩阵$A$​的列空间上的投影就为$\boldsymbol p=A\hat x$​，向量$\boldsymbol b$与投影$\boldsymbol p$的差向量就为$\boldsymbol e=\boldsymbol b-\boldsymbol p=\boldsymbol b-A\hat x$​​,差向量应当垂直于系数矩阵$A$​的列空间。我们就可以得到：
+$$
+A^T\boldsymbol e=0\rightarrow A^TA\hat x=A^T\boldsymbol b
+$$
 
 # 矩阵特征值和特征向量
 
@@ -242,7 +278,7 @@ a_{11}-\lambda&&&\\
 \end{vmatrix}
 =(\lambda_{1}-\lambda)(\lambda_{2}-\lambda)\cdots(\lambda_{n}-\lambda)=0
 $$
-根据方程根与系数之间的关系，展开可得到矩阵特征值与矩阵元素之间的关系，其中比较重要的有下面两条。
+根据方程根与系数之间的关系 ，展开可得到矩阵特征值与矩阵元素之间的关系，其中比较重要的有下面两条。
 
 - 矩阵的特征值之和等于该矩阵的迹(trace)，即矩阵的对角元素之和：
 
@@ -255,6 +291,143 @@ $$
 $$
 \prod_{i=1}^{n}\lambda_{i}=det(A)
 $$
+
+## 矩阵对角化
+
+矩阵对角化(diagnalize)在处理矩阵的幂乘(power of matrix)时非常有用，当矩阵有n个线性无关特征向量时，矩阵可对角化。
+
+根据矩阵特征值的定义，有：
+$$
+A\boldsymbol x_{1}=\lambda_{1}\boldsymbol x_{1}\\
+A\boldsymbol x_{2}=\lambda_{2}\boldsymbol x_{2}\\
+\cdots\\
+A\boldsymbol x_{n}=\lambda_{n}\boldsymbol x_{n}
+$$
+将上述结果写成矩阵形式，我们就可以得到：
+$$
+AX=X\Lambda
+$$
+其中，特征向量矩阵$X=[\boldsymbol x_{1},\boldsymbol x_{2},\cdots,\boldsymbol x_{n}]$​，对角矩阵$\Lambda=diag(\lambda_{1},\lambda_{2},\cdots,\lambda_{n})$​。​
+
+因为特征向量线性无关，即矩阵$X$可逆，进一步，我们可以得到矩阵的对角化结果：
+$$
+X^{-1}AX=\Lambda\Leftrightarrow A=X\Lambda X^{-1}
+$$
+矩阵的幂乘就可以简单地表示为：
+$$
+A^{k}=\begin{matrix}
+\underbrace{(X\Lambda X^{-1})(X\Lambda X^{-1})\cdots(X\Lambda X^{-1})}\\
+n
+\end{matrix}
+=X\Lambda^{k}X^{-1}
+$$
+
+## 斐波那契数列
+
+对于递推关系式$\boldsymbol u_{k+1}=A\boldsymbol u_{k}$和初始值$\boldsymbol u_{0}$​，由递推关系我们可以得到：
+$$
+\boldsymbol u_{k}=A^{k}\boldsymbol u_{0}
+$$
+当矩阵$A$可对角化时，我们对上式化简就可以得到：
+$$
+\boldsymbol u_{k}=X\Lambda^{k}X^{-1}\boldsymbol u_{0}\overset{let\ X^{-1}\boldsymbol u_{0}=\boldsymbol c}{=}c_{1}\lambda_{1}^{k}\boldsymbol x_{1}+c_{2}\lambda_{2}^{k}\boldsymbol x_{2}+\cdots+c_{n}\lambda_{n}^{k}\boldsymbol x_{n}
+$$
+上述的关键就是求得系数矩阵$A$的特征值和特征向量。
+
+我们知道，斐波那契数列(Fibonacci Numbers)可以表示为：
+$$
+F_{n+2}=F_{n+1}+F_{n}\\
+F_{1}=0,F_{2}=1
+$$
+那么，对于斐波那契数列，我们就有一般的求解过程：
+
+- step1：对递推关系式构造系数矩阵
+
+$$
+\begin{aligned}
+F_{n+2}&=F_{n+1}+F_{n}\\
+F_{n+1}&=F_{n+1}
+\end{aligned}
+$$
+
+记$\boldsymbol u_{k}=\begin{bmatrix}F_{n+1}\\F_{n}\end{bmatrix}$​，​​那么上式用矩阵的形式就可以表式为：
+$$
+\begin{aligned}
+\boldsymbol u_{k+1}&=\begin{bmatrix}
+1&1\\
+1&0
+\end{bmatrix}
+\boldsymbol u_{k}\\
+\boldsymbol u_{0}&=
+\begin{bmatrix}
+1\\0
+\end{bmatrix}
+\end{aligned}
+$$
+
+- step2：求系数矩阵的特征值和特征向量
+
+$$
+det(A-\lambda I)=\begin{vmatrix}
+1-\lambda&0\\
+1&-\lambda
+\end{vmatrix}=\lambda^{2}-\lambda-1=0
+$$
+
+求得特征值为：$\lambda_{1}=\frac{1+\sqrt{5}}{2}$​​​和$\lambda_{2}=\frac{1-\sqrt{5}}{2}$​​​。特征向量为：$\boldsymbol x_{1}=\begin{bmatrix}\lambda_{1}\\1\end{bmatrix}$​​​和$\boldsymbol x_{2}=\begin{bmatrix}\lambda_{2}\\1\end{bmatrix}$​​​​​。​
+
+- step3：代入递推关系式，求得表达式
+
+$$
+\begin{aligned}
+\boldsymbol u_{k}&=c_{1}\lambda_{1}^{k}\boldsymbol x_{1}+c_{2}\lambda_{2}^{k}\boldsymbol x_{2}
+\\&=c_{1}\lambda_{1}^{k}\begin{bmatrix}\lambda_{1}\\1\end{bmatrix}+c_{2}\lambda_{2}^{k}\begin{bmatrix}\lambda_{2}\\1\end{bmatrix}
+\\&=\begin{bmatrix}
+c_{1}\lambda^{k+1}+c_{2}\lambda^{k+1}\\
+c_{1}\lambda^{k}+c_{1}\lambda^{k}
+\end{bmatrix}
+\end{aligned}
+$$
+
+根据初始值$\boldsymbol u_{0}&=\begin{bmatrix}1\\0\end{bmatrix}$​​​，求得$c_{1}=\frac{1}{\lambda_{1}-\lambda_{2}}=\frac{\sqrt{5}}{5}$​​​和$c_{2}=\frac{-1}{\lambda_{1}-\lambda_{2}}=-\frac{\sqrt{5}}{5}$​​​​​。于是，我们就得到斐波那契数列的通项为：
+$$
+F_{n}=\frac{\sqrt{5}}{5}(\frac{1+\sqrt{5}}{2})^{n}-\frac{\sqrt{5}}{5}(\frac{1-\sqrt{5}}{2})^{n}
+$$
+-----------------------------------------***----------------------------------------------
+
+当然了，我们也可以从矩阵的维度出发，得到：
+$$
+\boldsymbol u_{k}=X\Lambda^{k}X^{-1}\boldsymbol u_{0}\overset{let\ X^{-1}\boldsymbol u_{0}=\boldsymbol c}{=}X\Lambda\boldsymbol c
+$$
+于是就有：
+$$
+X^{-1}\boldsymbol u_{0}=\boldsymbol c\Rightarrow \boldsymbol u_{0}=X\boldsymbol c
+$$
+可以理解$\boldsymbol c$​为就是初始值$\boldsymbol u_{0}$​在特征向量矩阵$X$​​上的投影。所以step3可以替换为：
+
+- step3'：
+
+$$
+\boldsymbol u_{0}=c_{1}\boldsymbol x_{1}+c_{2}\boldsymbol x_{2}\Rightarrow
+\begin{bmatrix}
+1\\0
+\end{bmatrix}
+=c_{1}\begin{bmatrix}
+\lambda_{1}\\1
+\end{bmatrix}+
+c_{2}\begin{bmatrix}
+\lambda_{2}\\1
+\end{bmatrix}
+\Rightarrow c_{1}=\frac{1}{\lambda_{1}-\lambda_{2}}&c_{2}=\frac{-1}{\lambda_{1}-\lambda_{2}}
+$$
+
+带入式$\boldsymbol u_{k}=c_{1}\lambda_{1}^{k}\boldsymbol x_{1}+c_{2}\lambda_{2}^{k}\boldsymbol x_{2}$​​，于是就能得到斐波那契数列的通项。
+
+-----------------------------------------***----------------------------------------------
+
+## 马尔可夫矩阵
+
+
 
 ## <u>海森堡不确定性原则</u>
 
