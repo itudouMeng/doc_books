@@ -73,7 +73,7 @@ $$
 
 ![projection-onto-column-space](linear-algebra.assets/projection-onto-column-space.png)
 
-实际上我们可以这么来理解：差向量$\boldsymbol b-\boldsymbol p=\boldsymbol b-A\hat{\boldsymbol x}$垂直于矩阵$A$的列空间，就可以直接得到上式。当矩阵$A$的列线性无关时，对上面的表达式化简，我们就可以得到投影变换为：
+实际上我们可以这么来理解：差向量$\boldsymbol e=\boldsymbol b-\boldsymbol p=\boldsymbol b-A\hat{\boldsymbol x}$​垂直于矩阵$A$​的列空间，就可以直接得到上式。当矩阵$A$​的列线性无关时，对上面的表达式化简，我们就可以得到投影变换为：
 $$
 \boldsymbol p=A(A^T A)^{-1}A^T\boldsymbol b
 $$
@@ -322,6 +322,18 @@ n
 =X\Lambda^{k}X^{-1}
 $$
 
+## 矩阵对角化判别规则
+
+几何重数(GM=geometric multiplicity)指对应特征值$\lambda$的线性无关的特征向量的数量，几何重数是$A-\lambda I$​的零空间的维度，即：
+$$
+GM=dim(N(A-\lambda I))
+$$
+代数重数(AM=algebric multiplicity)指特征多项式$det(A-\lambda I)=0$​​根的数量，一般地，代数重数是矩阵的阶数，即：
+$$
+AM=n
+$$
+通常有关系式：$GM\leq AM=n$​​。当几何重数小于代数重数时，矩阵不可对角化；当几何重数等代数重数时，矩阵可对角化。
+
 ## 斐波那契数列
 
 对于递推关系式$\boldsymbol u_{k+1}=A\boldsymbol u_{k}$和初始值$\boldsymbol u_{0}$​，由递推关系我们可以得到：
@@ -405,7 +417,7 @@ X^{-1}\boldsymbol u_{0}=\boldsymbol c\Rightarrow \boldsymbol u_{0}=X\boldsymbol 
 $$
 可以理解$\boldsymbol c$​为就是初始值$\boldsymbol u_{0}$​在特征向量矩阵$X$​​上的投影。所以step3可以替换为：
 
-- step3'：
+- step3'：求得初始值向量$u_{0}$在特征向量$X$上的投影坐标
 
 $$
 \boldsymbol u_{0}=c_{1}\boldsymbol x_{1}+c_{2}\boldsymbol x_{2}\Rightarrow
@@ -424,6 +436,86 @@ $$
 带入式$\boldsymbol u_{k}=c_{1}\lambda_{1}^{k}\boldsymbol x_{1}+c_{2}\lambda_{2}^{k}\boldsymbol x_{2}$​​，于是就能得到斐波那契数列的通项。
 
 -----------------------------------------***----------------------------------------------
+
+## 矩阵指数
+
+类似指数函数的泰勒展开式，矩阵指数(matrix exponent)$e^{At}$​​有定义式：
+$$
+e^{At}=I+At+\frac{(At)^{2}}{2!}+\frac{(At)^{3}}{3!}+\cdots=\sum_{k=1}^{\infin}\frac{(At)^{k}}{k!}
+$$
+
+- 导函数
+
+  我们对变量$t$​​求导，有：
+
+$$
+A+A^{2}t+\frac{A^{3}t^{2}}{2!}+\cdots=Ae^{At}
+$$
+
+​	我们就有一个优美和简洁的结论，矩阵指数$e^{At}$的导函数与指数函数一般形式保持一致。
+
+- 特征值和特征向量
+记矩阵$A$​特征值为$\lambda$，特征向量为$\boldsymbol x$​​​，对矩阵指数乘以特征向量$\boldsymbol x$​就得到：
+
+$$
+(I+At+\frac{(At)^{2}}{2!}+\cdots)\boldsymbol x=(1+\lambda t+\frac{(\lambda t)^{2}}{2!}+\cdots)\boldsymbol x=e^{\lambda t}\boldsymbol x
+$$
+
+​	我们就有矩阵指数$e^{At}$​的特征值为$e^{\lambda t}$​，特征向量同为矩阵$A$​的特征向量$\boldsymbol x$​​。
+
+- 对角化
+
+  利用表达式$A=X\Lambda X^{-1}$，对矩阵指数进行对角化，有：
+
+$$
+\begin{aligned}
+e^{At}&=I+X\Lambda tX^{-1}+\frac{(X\Lambda t X^{-1})(X\Lambda t X^{-1})}{2!}+\cdots\\
+&=X\left[I+\Lambda t+\frac{(\Lambda t)^{2}}{2!}+\cdots\right]X^{-1}\\
+&=Xe^{\Lambda t}X^{-1}
+\end{aligned}
+$$
+
+## 常系数微分方程
+
+记$\boldsymbol u$​​​​是时间$t$​​​​的函数：$\boldsymbol u=\boldsymbol u(t)$​​​​,初始值为$\boldsymbol u_{0}$。那么，对于常系数微分方程
+$$
+\begin{cases}
+\begin{aligned}
+\frac{d\boldsymbol u}{dt}&=A\boldsymbol u\\
+\boldsymbol u_0&=\boldsymbol u(0)
+\end{aligned}
+\end{cases}
+$$
+有矩阵指数的定义，其矩阵形式的通解就为：
+$$
+\boldsymbol u=e^{At}\boldsymbol u_{0}
+$$
+
+1. 当矩阵$A$​​​​可对角化时，我们就有:
+
+$$
+\begin{aligned}
+   \boldsymbol u=e^{At}\boldsymbol u_{0}&=Xe^{\Lambda t}X^{-1}\boldsymbol u_{0}
+   \\&\overset{let\ X^{-1}\boldsymbol u_{0}=\boldsymbol c}{=}Xe^{\Lambda t}\boldsymbol c
+   \\&=c_{1}e^{\lambda_{1}t}\boldsymbol x_{1}+c_{2}e^{\lambda_{2}t}\boldsymbol x_{2}+\cdots
+   \end{aligned}
+$$
+
+2. 当矩阵$A$​​不可对角化时，表示矩阵的几何重数小于代数重数，即矩阵不具有$n$​个线性无关的特征向量,存在重复的特征向量。记矩阵重复特征向量对应的特征值为$\lambda_{0}$​，我们就有:
+
+$$
+\begin{aligned}
+\boldsymbol u=e^{At}\boldsymbol u_{0}&=e^{(A-\lambda_{0}I)t+\lambda_{0}It}\boldsymbol u_{0}
+\\&=e^{\lambda_{0}t}e^{A-\lambda_{0}I}\boldsymbol u_{0}
+\\&=e^{\lambda_{0}t}\left[I+(A-\lambda_{0}I)t+\frac{[(A-\lambda_{0}I)t]^2}{2!}+\cdots\right]\boldsymbol u_{0}
+\end{aligned}
+$$
+
+类似的，我们可以得到常系数微分方程的一般求解过程：
+
+- step1:
+- step2:
+- step3:
 
 ## 马尔可夫矩阵
 
