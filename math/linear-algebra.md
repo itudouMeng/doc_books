@@ -273,7 +273,7 @@ $$
 det(A-\lambda I)=\begin{vmatrix}
 a_{11}-\lambda&&&\\
 &a_{22}-\lambda&&\\
-&&\cdots&\\
+&&\ddots&\\
 &&&a_{nn}-\lambda
 \end{vmatrix}
 =(\lambda_{1}-\lambda)(\lambda_{2}-\lambda)\cdots(\lambda_{n}-\lambda)=0
@@ -333,6 +333,23 @@ $$
 AM=n
 $$
 通常有关系式：$GM\leq AM=n$​​。当几何重数小于代数重数时，矩阵不可对角化；当几何重数等代数重数时，矩阵可对角化。
+
+## 凯莱-哈密顿定理
+
+凯莱-哈密顿定理(Caylay-Hamilton Theorem)描述了矩阵特征值与矩阵的一种关系。记矩阵的特征多项式为$f(\lambda)=(\lambda-\lambda_1)(\lambda-\lambda_2)\cdots(\lambda-\lambda_n)$​，那么有：
+$$
+f(A)=(A-\lambda_1 I)(A-\lambda_2 I)\cdots(A-\lambda_n I)=\boldsymbol O
+$$
+当矩阵可对角化时，就有：
+$$
+\begin{aligned}
+(A-\lambda_1 I)\cdots(A-\lambda_n I)&=(X\Lambda X^{-1}-X\lambda_1X^{-1})\cdots(X\Lambda X^{-1}-X\lambda_nX^{-1})
+\\&=X(\Lambda-\lambda_1 I)X^{-1}\cdots X(\Lambda-\lambda_n I)X^{-1}\\&=X\begin{bmatrix}\lambda_1-\lambda_1&&\\&\ddots&\\&&\lambda_n-\lambda_1\end{bmatrix}\cdots
+\begin{bmatrix}\lambda_1-\lambda_n&&\\&\ddots&\\&&\lambda_n-\lambda_n\end{bmatrix}X^{-1}
+\\&=XOX^{-1}=O
+\end{aligned}
+$$
+当矩阵不可对角化时，亦有关系式成立。
 
 ## 斐波那契数列
 
@@ -401,7 +418,7 @@ c_{1}\lambda^{k}+c_{1}\lambda^{k}
 \end{aligned}
 $$
 
-根据初始值$\boldsymbol u_{0}&=\begin{bmatrix}1\\0\end{bmatrix}$​​​，求得$c_{1}=\frac{1}{\lambda_{1}-\lambda_{2}}=\frac{\sqrt{5}}{5}$​​​和$c_{2}=\frac{-1}{\lambda_{1}-\lambda_{2}}=-\frac{\sqrt{5}}{5}$​​​​​。于是，我们就得到斐波那契数列的通项为：
+根据初始值$\boldsymbol u_{0}=\begin{bmatrix}1\\0\end{bmatrix}$​​​​，求得$c_{1}=\frac{1}{\lambda_{1}-\lambda_{2}}=\frac{\sqrt{5}}{5}$​​​​和$c_{2}=\frac{-1}{\lambda_{1}-\lambda_{2}}=-\frac{\sqrt{5}}{5}$​​​​​​。于是，我们就得到斐波那契数列的通项为：
 $$
 F_{n}=\frac{\sqrt{5}}{5}(\frac{1+\sqrt{5}}{2})^{n}-\frac{\sqrt{5}}{5}(\frac{1-\sqrt{5}}{2})^{n}
 $$
@@ -471,9 +488,18 @@ $$
 \begin{aligned}
 e^{At}&=I+X\Lambda tX^{-1}+\frac{(X\Lambda t X^{-1})(X\Lambda t X^{-1})}{2!}+\cdots\\
 &=X\left[I+\Lambda t+\frac{(\Lambda t)^{2}}{2!}+\cdots\right]X^{-1}\\
-&=Xe^{\Lambda t}X^{-1}
+&=Xe^{\Lambda t}X^{-1}\\
+&=X\begin{bmatrix}
+e^{\lambda_1}&&\\
+&\ddots&\\
+&&e^{\lambda_n}
+\end{bmatrix}X^{-1}
 \end{aligned}
 $$
+
+- 稳态
+
+  当$\bold u(t)=e^{At}\boldsymbol u_0\rightarrow 0$​​​​时，系统最终趋于稳定状态。就有当矩阵$A$​的所有特征值实部$Re(\lambda)$小于$0$​时，满足条件$e^{At}\rightarrow 0$​。
 
 ## 常系数微分方程
 
@@ -486,12 +512,12 @@ $$
 \end{aligned}
 \end{cases}
 $$
-有矩阵指数的定义，其矩阵形式的通解就为：
+由矩阵指数的定义，其矩阵形式的通解就为：
 $$
 \boldsymbol u=e^{At}\boldsymbol u_{0}
 $$
 
-1. 当矩阵$A$​​​​可对角化时，我们就有:
+1. 当矩阵$A$​​​​​可对角化时，我们就有:
 
 $$
 \begin{aligned}
@@ -501,7 +527,7 @@ $$
    \end{aligned}
 $$
 
-2. 当矩阵$A$​​不可对角化时，表示矩阵的几何重数小于代数重数，即矩阵不具有$n$​个线性无关的特征向量,存在重复的特征向量。记矩阵重复特征向量对应的特征值为$\lambda_{0}$​，我们就有:
+2. 当矩阵$A$​​​不可对角化时，表示矩阵的几何重数小于代数重数，即矩阵不具有$n$​​个线性无关的特征向量,存在重复的特征向量。记矩阵重复特征向量对应的特征值为$\lambda_{0}$​​，我们就有:
 
 $$
 \begin{aligned}
@@ -511,15 +537,97 @@ $$
 \end{aligned}
 $$
 
-类似的，我们可以得到常系数微分方程的一般求解过程：
+​	可以通过矩阵指数展开式进一步分析解的形式。
 
-- step1:
-- step2:
-- step3:
+类似的，我们可以得到常系数微分方程的一般求解过程。
+
+### 动力系统耦合方程
+
+以下面的耦合方程来演示求解过程：
+$$
+\begin{cases}
+\begin{aligned}
+\frac{d\boldsymbol u_1}{dt}&=\boldsymbol u_1+\boldsymbol u_2\\
+\frac{d\boldsymbol u_2}{dt}&=\boldsymbol u_1-\boldsymbol u_2
+\end{aligned}
+\end{cases}
+$$
+初始值为：$\boldsymbol u(0)=\begin{bmatrix}\boldsymbol u_1(0)\\\boldsymbol u_2(0)\end{bmatrix}=\begin{bmatrix}1\\0\end{bmatrix}$。
+
+- step1:构造微分方程的矩阵表达形式
+
+$$
+\frac{d\boldsymbol u}{dt}=\begin{bmatrix}
+1&1\\
+1&-1
+\end{bmatrix}\begin{bmatrix}
+\boldsymbol u_{1}\\
+\boldsymbol u_{2}
+\end{bmatrix}=A\boldsymbol u
+$$
+
+- step2:求得系数矩阵的特征值和特征向量
+
+  根据特征多项式$det(A-\lambda I)=0$​​​，求得特征值为：$\lambda_1=\sqrt2$​​​和$\lambda_2=-\sqrt2$​​​；特征向量为：$\boldsymbol x_1=\begin{bmatrix}1+\lambda_1\\1\end{bmatrix}$​​​和$\boldsymbol x_2=\begin{bmatrix}1+\lambda_2\\1\end{bmatrix}$​​​。
+
+- step3:求得初始值在特征向量上的投影
+
+$$
+\begin{aligned}
+\boldsymbol u_0=c_1\boldsymbol x_1+c_2\boldsymbol x_2
+&\Rightarrow\begin{bmatrix}1\\0\end{bmatrix}=c_1\begin{bmatrix}1+\lambda_1\\0\end{bmatrix}+c_2\begin{bmatrix}1+\lambda_2\\0\end{bmatrix}
+\\&\Rightarrow\begin{bmatrix}c_1\\c_2\end{bmatrix}=\begin{bmatrix}\frac{1}{\lambda_1-\lambda_2}\\\frac{1}{\lambda_2-\lambda_1}\end{bmatrix}=\begin{bmatrix}\frac{\sqrt2}{4}\\-\frac{\sqrt2}{4}\end{bmatrix}
+\end{aligned}
+$$
+
+- step4:代入表达式，得到通解
+
+$$
+\begin{aligned}
+\boldsymbol u=e^{At}\boldsymbol u_{0}&=c_{1}e^{\lambda_{1}t}\boldsymbol x_{1}+c_{2}e^{\lambda_{2}t}\boldsymbol x_{2}
+\\&=\frac{\sqrt2}{4}e^{\sqrt2t}\begin{bmatrix}1+\sqrt2\\1\end{bmatrix}-\frac{\sqrt2}{4}e^{-\sqrt2t}\begin{bmatrix}1-\sqrt2\\1\end{bmatrix}
+\\&=\begin{bmatrix}\frac{\sqrt2}{4}(1+\sqrt2)e^{\sqrt2t}-\frac{\sqrt2}{4}(1-\sqrt2)e^{-\sqrt2t}\\\frac{\sqrt2}{4}e^{\sqrt2t}-\frac{\sqrt2}{4}e^{-\sqrt2t}\end{bmatrix}
+\end{aligned}
+$$
+
+### 二阶微分方程
+
+对于二阶微分方程$m\ddot y+c\dot y+ky=0$​​​​​​，可以通过构造矩阵的形式来求解：
+$$
+\begin{cases}
+\begin{aligned}
+\ddot y&=-\frac{c}{m}\dot y-\frac{k}{m}y\\
+\dot y&=\dot y
+\end{aligned}
+\end{cases}\Rightarrow
+\begin{bmatrix}\ddot y\\\dot y\end{bmatrix}
+=\begin{bmatrix}-\frac{c}{m}&-\frac{k}{m}\\1&0\end{bmatrix}
+\begin{bmatrix}\dot y\\ y\end{bmatrix}
+\Rightarrow \dot u=Au
+$$
+
+微分方程的详细解法参考：[differential equations and linear algebra]:https://math.mit.edu/dela
 
 ## 马尔可夫矩阵
 
+马尔可夫矩阵在随机过程中有重要的应用。马尔可夫矩阵有定义：
 
+1. 所有元素大于等于O
+2. 各列向量元素之和为1
+
+基本性质：
+
+- 1是特征值
+- 其余特征值绝对值小于1。当系统可以用马尔可夫矩阵描述时，其稳态是特征值1对应的那部分矢量：
+
+$$
+\begin{cases}
+\begin{aligned}
+\boldsymbol u&=\boldsymbol u(t)\\
+\boldsymbol u_k&=A^k\boldsymbol u_0\to\lim_{k\to\infin}\boldsymbol u_k=c_1e^{t}\boldsymbol x_1
+\end{aligned}
+\end{cases}
+$$
 
 ## <u>海森堡不确定性原则</u>
 
@@ -530,4 +638,6 @@ $$
 > Explain that last step by using the Schwarz inequality$|u^Tv|\leq \Vert u \Vert\Vert v \vert$.Then Heisenberg's inequality says that $\Vert Ax \Vert/\Vert x \Vert$ times $\Vert Bx \Vert/\Vert x \Vert$​is at least ½­ It is impossible to get the position error and momentum error both very small.
 
 
+
+## 对称矩阵
 
