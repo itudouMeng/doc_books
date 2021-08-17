@@ -1,4 +1,6 @@
-# 矩阵乘法
+# 矩
+
+阵乘法
 
 # 向量空间
 
@@ -14,7 +16,7 @@
 当$m\times n$​阶矩阵A的秩$rank(A)=r$​,可以通过高斯消元法得到：
 $$
 \begin{aligned}
-A\vec x=\bold 0 &\rArr
+A\vec x=\boldsymbol 0 &\rArr
 \left[\begin{matrix}
 I&F\\
 \bold 0&\bold 0
@@ -259,7 +261,7 @@ $$
 $$
 Ax=\boldsymbol b
 $$
-当方程数量大于未知数数量时（系数矩阵$A$的行数大于列数：$m>n$），原方程不一定存在解，这个时候最小二乘法就能求得一个近似解$\hat x$，某种程度上其是“最优解“，几何意义上平方差$error(x-\hat x)$​​最小。
+当方程数量大于未知数数量时（系数矩阵$A$​的行数大于列数：$m>n$​），原方程不一定存在解，这个时候最小二乘法就能求得一个近似解$\hat x$​，某种程度上其是“最优解“，几何意义上误差$\Vert x-\hat x\Vert$​​​最小。
 
 设最优解是$\hat x$​,那么最优解$\hat x$​在系数矩阵$A$​的列空间上的投影就为$\boldsymbol p=A\hat x$​，向量$\boldsymbol b$与投影$\boldsymbol p$的差向量就为$\boldsymbol e=\boldsymbol b-\boldsymbol p=\boldsymbol b-A\hat x$​​,差向量应当垂直于系数矩阵$A$​的列空间。我们就可以得到：
 $$
@@ -324,15 +326,17 @@ $$
 
 ## 矩阵对角化判别规则
 
-几何重数(GM=geometric multiplicity)指对应特征值$\lambda$的线性无关的特征向量的数量，几何重数是$A-\lambda I$​的零空间的维度，即：
+几何重数(GM=geometric multiplicity)指特征值$\lambda$​对应的线性无关的特征向量的数量，即是$A-\lambda I$​​的零空间的维度大小，有：
 $$
 GM=dim(N(A-\lambda I))
 $$
-代数重数(AM=algebric multiplicity)指特征多项式$det(A-\lambda I)=0$​​根的数量，一般地，代数重数是矩阵的阶数，即：
-$$
-AM=n
-$$
-通常有关系式：$GM\leq AM=n$​​。当几何重数小于代数重数时，矩阵不可对角化；当几何重数等代数重数时，矩阵可对角化。
+代数重数(AM=algebric multiplicity)指特征值$\lambda$​对应的特征多项式重根的数量。
+
+通常有关系式：$GM\leq AM$​​​​。
+
+- 当存在矩阵特征值几何重数小于代数重数时，矩阵不可对角化
+
+- 当所有矩阵特征值几何重数等于代数重数时，矩阵可对角化
 
 ## 凯莱-哈密顿定理
 
@@ -349,9 +353,19 @@ $$
 \\&=XOX^{-1}=O
 \end{aligned}
 $$
-当矩阵不可对角化时，亦有关系式成立。
+当矩阵不可对角化时，可以近似对角化，变为jordan标准型，就有：
+$$
+\begin{aligned}
+(A-\lambda_1 I)\cdots(A-\lambda_n I)&=(XJ X^{-1}-X(\lambda_1I)X^{-1})\cdots(XJ X^{-1}-X(\lambda_sI)X^{-1})
+\\&=X(J-\lambda_1I)X^{-1}\cdots X(J-\lambda_s)X^{-1}
+\\&=X\begin{bmatrix}J_1-\lambda_1I&&\\&\ddots&\\&&J_s-\lambda_1I\end{bmatrix}\cdots\begin{bmatrix}J_1-\lambda_sI&&\\&\ddots&\\&&J_s-\lambda_sI\end{bmatrix}X^{-1}
+\\&=X\begin{bmatrix}(J_1-\lambda_1 I)\cdots(J_1-\lambda_sI)&&\\&\ddots&\\&&(J_s-\lambda_1I)\cdots(J_s-\lambda_sI)\end{bmatrix}X^{-1}
+\\&=\boldsymbol O
+\end{aligned}
+$$
 
-## 斐波那契数列
+
+## 差分方程—斐波那契数列
 
 对于递推关系式$\boldsymbol u_{k+1}=A\boldsymbol u_{k}$和初始值$\boldsymbol u_{0}$​，由递推关系我们可以得到：
 $$
@@ -501,7 +515,7 @@ $$
 
   当$\bold u(t)=e^{At}\boldsymbol u_0\rightarrow 0$​​​​时，系统最终趋于稳定状态。就有当矩阵$A$​的所有特征值实部$Re(\lambda)$小于$0$​时，满足条件$e^{At}\rightarrow 0$​。
 
-## 常系数微分方程
+## 微分方程
 
 记$\boldsymbol u$​​​​是时间$t$​​​​的函数：$\boldsymbol u=\boldsymbol u(t)$​​​​,初始值为$\boldsymbol u_{0}$。那么，对于常系数微分方程
 $$
@@ -541,7 +555,7 @@ $$
 
 类似的，我们可以得到常系数微分方程的一般求解过程。
 
-### 动力系统耦合方程
+### 耦合方程
 
 以下面的耦合方程来演示求解过程：
 $$
@@ -606,7 +620,7 @@ $$
 \Rightarrow \dot u=Au
 $$
 
-微分方程的详细解法参考：[differential equations and linear algebra]:https://math.mit.edu/dela
+微分方程详细参考：[differential equations and linear algebra]:https://math.mit.edu/dela
 
 ## 马尔可夫矩阵
 
@@ -640,4 +654,16 @@ $$
 
 
 ## 对称矩阵
+
+对实矩阵，满足
+
+## 正定矩阵
+
+## 相似矩阵
+
+若存在一个可逆矩阵$M$​​​，使得$A=M^{-1}BM$​​​，则矩阵相似，记作$A\sim B$​​​​。
+
+相似矩阵有相等的特征值。
+
+## 奇异值分解
 

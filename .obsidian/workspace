@@ -1,0 +1,114 @@
+{
+  "main": {
+    "id": "ab2abc0381812da8",
+    "type": "split",
+    "children": [
+      {
+        "id": "6fb48dc708e84f9a",
+        "type": "leaf",
+        "state": {
+          "type": "markdown",
+          "state": {
+            "file": "math/linear-algebra.md",
+            "mode": "source"
+          }
+        }
+      },
+      {
+        "id": "6fa7087181f546c3",
+        "type": "leaf",
+        "state": {
+          "type": "markdown",
+          "state": {
+            "file": "math/linear-algebra.md",
+            "mode": "preview"
+          }
+        }
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "d8e399c49c24f7a2",
+    "type": "split",
+    "children": [
+      {
+        "id": "ba8fe476ab24ddbc",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "3b9c71cff5d7737b",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {}
+            }
+          },
+          {
+            "id": "3953a1ab83a3cd91",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 226
+  },
+  "right": {
+    "id": "cf70e744e36cb173",
+    "type": "split",
+    "children": [
+      {
+        "id": "b437dc1537ddd777",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "539361c9ef99aad5",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "math/linear-algebra.md",
+                "collapseAll": true,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": true,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "055687e83b5453e7",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": false
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "active": "6fb48dc708e84f9a",
+  "lastOpenFiles": [
+    "math/linear-algebra.md"
+  ]
+}
