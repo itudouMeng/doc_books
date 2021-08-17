@@ -364,7 +364,6 @@ $$
 \end{aligned}
 $$
 
-
 ## 差分方程—斐波那契数列
 
 对于递推关系式$\boldsymbol u_{k+1}=A\boldsymbol u_{k}$和初始值$\boldsymbol u_{0}$​，由递推关系我们可以得到：
@@ -655,15 +654,176 @@ $$
 
 ## 对称矩阵
 
-对实矩阵，满足
+实数域内，满足$A=A^T$的矩阵称作对称矩阵(skew matrix)。复数域内，引入共轭转置算子$A^H=\bar A^T$,满足$A=A^H$的矩阵称作对称矩阵。
+
+- 对称矩阵的特征值全部为实数
+
+  取矩阵一组特征值$\lambda$和特征向量$\boldsymbol x$，取共轭转置算子，有：
+
+$$
+A\boldsymbol x=\lambda \boldsymbol x\to{\boldsymbol x}^HA={\boldsymbol x}^H\lambda^H
+$$
+
+​	由矩阵乘法的性质，就可以得到：
+$$
+\begin{aligned}\begin{cases}
+A\boldsymbol x=\lambda \boldsymbol x&\to{\boldsymbol x}^HA\boldsymbol x={\boldsymbol x}^H\lambda\boldsymbol x
+\\{\boldsymbol x}^H A={\boldsymbol x}^H\lambda^H &\to {\boldsymbol x}^HA\boldsymbol x ={\boldsymbol x}^H\lambda^H\boldsymbol x
+\end{cases}\end{aligned}
+\to {\lambda}^H=\lambda
+$$
+​	由复数的性质可以得到特征值$\lambda$一定为实数。
+
+- 对称矩阵的不同特征值对应的特征向量相互正交
+
+  取一组不同特征值$\lambda_1,\lambda_2(\lambda_1\neq\lambda_2)$和对应的特征向量$\boldsymbol x_1,\boldsymbol x_2$，有：
+
+$$
+\begin{aligned}
+&\begin{cases}
+({\lambda_1\boldsymbol x_1})^H\boldsymbol x_2=\boldsymbol x_1^H\lambda_1^H\boldsymbol x_2=\boldsymbol x_1^H\lambda_1\boldsymbol x_2
+\\({\lambda_1\boldsymbol x_1})^H\boldsymbol x_2=(A\boldsymbol x_1)^H\boldsymbol x_2=\boldsymbol x_1^H A^H\boldsymbol x_2=\boldsymbol x_1^H A\boldsymbol x_2=\boldsymbol x_1^H\lambda_2\boldsymbol x_2
+\end{cases}
+\\\Rightarrow&\lambda_1 \boldsymbol x_1^H\lambda_1\boldsymbol x_2=\boldsymbol x_1^H\lambda_2\boldsymbol x_2\to\boldsymbol x_1^H(\lambda_1-\lambda_2)\boldsymbol x_2=(\lambda_1-\lambda_2)x_1^H\boldsymbol x_2=0\to\boldsymbol x_1^H\boldsymbol x_2=0
+\end{aligned}
+$$
+
+- 全部对称矩阵可对角化
+
+  **该命题等价于实对称矩阵恰好有n个线性无关的特征向量,网上暂时没找到合适的证明方法，我看了之后觉得不够严谨，都存在缺陷。需要高阶的线性代数知识，留个记号。**
+
+  存在正交矩阵$Q$使得对称矩阵$A$对角化：
+
+$$
+\begin{cases}\begin{aligned}
+A&=Q\Lambda Q^{-1}=Q\Lambda Q^H\\
+A\boldsymbol q_i&=\lambda_i\boldsymbol q_i,\boldsymbol q_i\in column\_space(Q)
+\\\boldsymbol q_i^H\boldsymbol q_j&=0
+\\\boldsymbol q_i^H\boldsymbol q_i&=1
+\end{aligned}\end{cases}
+$$
+
+## 反对称矩阵
+
+类似于对称矩阵，当矩阵满足$A=-A^H$，称矩阵为$A$反对称矩阵(skew-matrix)。
+
+- 反对称矩阵的特征值全部为纯虚数
+- 反对称矩阵的的不同特征值对应的特征向量相互正交
+- 全部反对称矩阵可对角化
 
 ## 正定矩阵
 
+- 若矩阵$A$对任意的非零向量$\boldsymbol x$，满足$\boldsymbol x^TA\boldsymbol x>0$,称矩阵$A$为**正定矩阵(positive definite matrix)**；
+
+- 若矩阵$A$对任意的非零向量$\boldsymbol x$，满足$\boldsymbol x^TA\boldsymbol x\geq0$，称矩阵$A$为**半正定矩阵(semi-positive definite matrix)**。
+
+正定矩阵满足：
+
+- 特征值全部大于0
+- 高斯消元法得到的所有主元全部大于0
+- 各阶主子式全部大0
+
+-----------------------------------------***----------------------------------------------
+
+命题1：特征值全部大于0的对称矩阵是正定矩阵。
+
+证明：
+
+​	当矩阵$A$是对称矩阵时，可以将其对角化：$A=P\Lambda P^{T}$
+$$
+\begin{aligned}
+\boldsymbol x^TA\boldsymbol x&=\boldsymbol x^TP\Lambda P^{T}\boldsymbol x
+\\&=(P^T\boldsymbol x)^T\Lambda(P^T\boldsymbol x)
+\\&=\begin{bmatrix}\boldsymbol p_1^T\boldsymbol x&\boldsymbol p_2^T\boldsymbol x&\cdots&\boldsymbol p_n^T\boldsymbol x\end{bmatrix}\begin{bmatrix}\lambda_1&&&\\&\lambda_2&&&\\&&\ddots&&\\&&&&\lambda_n\end{bmatrix}\begin{bmatrix}\boldsymbol p_1^T\boldsymbol x\\\boldsymbol p_2^T\boldsymbol x\\\cdots\\\boldsymbol p_n^T\boldsymbol x\end{bmatrix}
+\\&=\lambda_1(\boldsymbol{p_1^{T}x})^T(\boldsymbol{p_1^{T}x})+\lambda_2(\boldsymbol{p_2^{T}x})^T(\boldsymbol{p_2^{T}x})+\cdots+\lambda_n(\boldsymbol{p_n^{T}x})^T(\boldsymbol{p_n^{T}x})>0
+\end{aligned}
+$$
+​	命题得证。
+
+-----------------------------------------***----------------------------------------------
+
+命题2:当矩阵的$A$列向量线性无关，矩阵$S=A^TA$是正定矩阵。
+
+证明：
+
+​	当矩阵$A$线性无关时，对任意的非零向量$\boldsymbol x$,有：
+$$
+\boldsymbol x^T S\boldsymbol x=\boldsymbol x^TA^TA\boldsymbol x=(A\boldsymbol x)^TA\boldsymbol x>0
+$$
+​	命题得证。
+
+-----------------------------------------***----------------------------------------------
+
 ## 相似矩阵
 
-若存在一个可逆矩阵$M$​​​，使得$A=M^{-1}BM$​​​，则矩阵相似，记作$A\sim B$​​​​。
+若存在一个可逆矩阵$P$​​​，使得$B=P^{-1}AP$​​​，则矩阵$A$和矩阵$B$相似，记作$A\sim B$​​​​。
 
-相似矩阵有相等的特征值。
+- 相似矩阵有相等的特征值。
 
-## 奇异值分解
+  设矩阵$A$的特征值$\lambda$对应的特征向量为$\boldsymbol x$，有：
+
+$$
+B(P^{-1}\boldsymbol x)=(P^{-1}AP)(P^{-1}\boldsymbol x)=P^{-1}\lambda\boldsymbol x=\lambda(P^{-1}\boldsymbol x)
+$$
+
+​	所以对矩阵$B$，$P^{-1}\boldsymbol x$是其特征向量，对应的特征值为$\lambda$。
+
+## 矩阵的奇异值分解
+
+## 左逆、右逆和伪逆
+
+当方阵可逆时，其逆矩阵存在，定义为$A^{-1}$,满足关系式：$AA^{-1}=A^{-1}A=I$，其中，$I$为单位阵。当矩阵为一般矩阵时，我们仍希望对矩阵乘法存在一个“单位元”的形式。
+
+现在考虑一般情形，对$m\times n$阶矩阵$A$，有：
+
+1. 当矩阵列满秩时,即rank(A)=n<m，矩阵左逆定义为： 
+
+   $$
+   A^{-1}_{left}=(A^TA)^{-1}A^T\to A^{-1}_{left}A=I_{n\times n}
+   $$
+   
+   此时，矩阵右乘其左逆时，得到：
+   $$
+   AA_{left}^{-1}=A(A^TA)^{-1}A^T
+   $$
+   显然，这是一个[投影矩阵](# 投影矩阵)，为矩阵列空间上的投影，这里我们可以看出矩阵列空间上的投影矩阵总是想“靠近”单位阵。
+   
+2. 当矩阵行满秩时，即rank(A)=m<n,矩阵右逆定义为：
+
+   $$
+   A_{right}^{-1}=A^T(AA^T)^{-1}\to AA_{right}^{-1}=I_{m\times m}
+   $$
+   
+   此时，矩阵左乘其右逆时，得到：
+   $$
+   A_{right}^{-1}A=A^T(AA^T)^{-1}A
+   $$
+   显然，这也是一个[投影矩阵](# 投影矩阵)，为矩阵行空间上的投影矩阵，总是想“靠近”单位阵。
+   
+3. 当矩阵行列均不满秩时，即rank(A)=r<min(m,n)，矩阵的伪逆(pseudo-inverse)是结合线性变换来得到的
+
+   
+
+
+# 矩阵分解
+
+## LU分解
+
+## [特征值分解](#矩阵对角化)
+
+[当矩阵恰好有n个线性无关的特征向量时，矩阵可对角化。矩阵有特征值分解：$A=X\Lambda X^{-1}$。](#矩阵对角化)
+
+## [奇异值分解](#矩阵的奇异值分解)
+
+
+
+## QR分解
+
+
+
+
+
+
+
+
 
