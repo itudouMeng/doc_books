@@ -20,7 +20,7 @@ Solver ode15s is employed; yet, other solvers, viz.
 ODE15S, ODE23S, ODE23T, ODE23TB, can be used, as well.
 %}
 
-if nargin < 1
+if nargin < 12
 % Some default values for parameters: Mass, Damping & Stiffness
 % in case not specified by the user
 Mass = 1; % [kg]
