@@ -817,7 +817,7 @@ $$
 
 
 
-取矩阵A行空间中的元素$\boldsymbol v$，有$A\boldsymbol v\neq0$，所以$A\boldsymbol v$总是在矩阵A的列空间中，即存在映射关系：$\boldsymbol v\in C(A)\xrightarrow{v=Au}\boldsymbol u\in C(A^T)$。那么，对矩阵列空间中的标准基，就有：
+取矩阵A行空间中的元素$\boldsymbol v$，有$A\boldsymbol v\neq0$，所以$A\boldsymbol v$总是在矩阵A的列空间中，即存在映射关系：$\boldsymbol v\in C(A)\xrightarrow{v=Au}\boldsymbol u\in C(A^T)$。那么，对矩阵列空间中的标准基$\boldsymbol v_1,\cdots,\boldsymbol v_r$，就有：
 $$
 \begin{gather}
 A\boldsymbol v_1=\sigma_1\boldsymbol u_1\\
@@ -862,27 +862,29 @@ $$
 
 -----------------------------------------***----------------------------------------------
 
-- 考察对称矩阵$AA^T$，有：
-  $$
-  \begin{aligned}
-  AA^T&=(U\Sigma V^{T})(U\Sigma V^{T})^T
-  \\&=U\Sigma\Sigma^TU^T
-  \\&=\begin{bmatrix}\boldsymbol u_1\cdots\boldsymbol u_r\cdots\boldsymbol u_m\end{bmatrix}\begin{bmatrix}\sigma _1^2&&\\&\ddots&\\&&\sigma_r^2\\&&&\boldsymbol O\end{bmatrix}\begin{bmatrix}\boldsymbol u_1^T\\\vdots\\\boldsymbol u_r^T\\\vdots\\\boldsymbol u_m\end{bmatrix}
-  \\&=\sigma_1^2\boldsymbol u_1\boldsymbol u_1^T+\cdots+\sigma_r^2\boldsymbol u_r\boldsymbol u_r^T
-  \end{aligned}
-  $$
-  所以$\sigma^2$是$AA^T$的特征值。
-
 - 考察对称矩阵$A^TA$，有：
   $$
   \begin{aligned}
   A^TA&=(U\Sigma V^{T})^T(U\Sigma V^{T})
-  \\&=V\Sigma\Sigma^TV^T
+  \\&=V\Sigma^T\Sigma V^T
   \\&=\begin{bmatrix}\boldsymbol v_1\cdots\boldsymbol v_r\cdots\boldsymbol v_n\end{bmatrix}\begin{bmatrix}\sigma_1^2&&\\&\ddots&\\&&\sigma_r^2\\&&&\boldsymbol O\end{bmatrix}\begin{bmatrix}\boldsymbol v_1^T\\\vdots\\\boldsymbol v_r^T\\\vdots\\\boldsymbol v_n^T\end{bmatrix}
   \\&=\sigma_1^2\boldsymbol v_1\boldsymbol v_1^T+\cdots+\sigma_r^2\boldsymbol v_r\boldsymbol v_r^T
   \end{aligned}
   $$
-  所以$\sigma^2$也是$A^TA$的特征值。[不难看出对称矩阵$AA^T$​和$A^TA$​有相同的特征值。](# 可交换矩阵)
+  所以$\sigma^2$是$A^TA$的特征值，$\boldsymbol v_1,\cdots,\boldsymbol v_r$是矩阵$A^TA$的特征向量。
+
+- 考察对称矩阵$AA^T$，有：
+
+$$
+\begin{aligned}
+AA^T&=(U\Sigma V^{T})(U\Sigma V^{T})^T
+\\&=U\Sigma\Sigma^TU^T
+\\&=\begin{bmatrix}\boldsymbol u_1\cdots\boldsymbol u_r\cdots\boldsymbol u_m\end{bmatrix}\begin{bmatrix}\sigma _1^2&&\\&\ddots&\\&&\sigma_r^2\\&&&\boldsymbol O\end{bmatrix}\begin{bmatrix}\boldsymbol u_1^T\\\vdots\\\boldsymbol u_r^T\\\vdots\\\boldsymbol u_m\end{bmatrix}
+\\&=\sigma_1^2\boldsymbol u_1\boldsymbol u_1^T+\cdots+\sigma_r^2\boldsymbol u_r\boldsymbol u_r^T
+\end{aligned}
+$$
+
+所以$\sigma^2$是$AA^T$的特征值,$\boldsymbol u_1,\cdots,\boldsymbol u_r$是矩阵$AA^T$的特征向量。[并且对称矩阵$AA^T$和$A^TA$有相同的特征值。](# 可交换矩阵)
 
 -----------------------------------------***----------------------------------------------
 
@@ -922,8 +924,21 @@ $$
    
    设矩阵$A$有奇异值分解式$A=U\Sigma V^T$,那么有：
    $$
-   A^+A=\begin{bmatrix}I_r&&\\&\ddots&\\&&0\end{bmatrix}\to A^+=V\begin{bmatrix}\frac{1}{\sigma_1}&&\\&\ddots&\\&&\frac{1}{\sigma_r}\end{bmatrix}U^T
+   \begin{cases}
+   \Sigma^+\Sigma=\begin{bmatrix}I_r&&\\&\ddots&\\&&0\end{bmatrix}_{n\times n}
+   \\\Sigma\Sigma^+=\begin{bmatrix}I_r&&\\&\ddots&\\&&0\end{bmatrix}_{m\times m}
+   \end{cases}
+   \to\Sigma^+=\begin{bmatrix}\frac{1}{\sigma_1}&&\\&\ddots&\\&&\frac{1}{\sigma_r}\\&&&\end{bmatrix}_{n\times m}
+   \to A^+=V\Sigma^+ U^T
    $$
+   
+   $$
+   \begin{cases}
+   AA^+A=(U\Sigma V^T)(V\Sigma^+ U^T)(U\Sigma V^T)=U\Sigma V^T=A\\
+   A^+AA^+=(V\Sigma^+ U^T)(U\Sigma V^T)(V\Sigma^+ U^T)=U\Sigma V^T=A^+
+   \end{cases}
+   $$
+   
    
 
 # 矩阵分解
