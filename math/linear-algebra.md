@@ -1,6 +1,4 @@
-# 矩
-
-阵乘法
+# 矩阵乘法
 
 # 向量空间
 
@@ -692,6 +690,8 @@ $$
 
   **该命题等价于实对称矩阵恰好有n个线性无关的特征向量,网上暂时没找到合适的证明方法，我看了之后觉得不够严谨，都存在缺陷。需要高阶的线性代数知识，留个记号。**
 
+  
+  
   存在正交矩阵$Q$使得对称矩阵$A$对角化：
 
 $$
@@ -768,7 +768,123 @@ $$
 
 ​	所以对矩阵$B$，$P^{-1}\boldsymbol x$是其特征向量，对应的特征值为$\lambda$。
 
+## 可交换矩阵
+
+若矩阵满足AB=BA,称矩阵A和B可交换。通常矩阵乘法不满足交换律，满足交换律的矩阵一定具有一些特殊的性质，mark一下，后面回来补充。暂时可以探究出来的性质：
+
+- 与矩阵A可交换的矩阵组成线性空间
+
+  设$B_1\in B,B_2\in B$，$A(B_1+B_2)=AB_1+AB_2=B_1A+B_2A=(B_1+B_2)A$，对加法封闭。$A(kB)=kAB=kBA$，对数乘封闭$\to$矩阵A的可交换空间是线性空间。
+
+- 有公共的特征向量
+
+  设$x$是矩阵A的特征值$\lambda$对应的特征向量，有：
+  $$
+  AB\boldsymbol x=BA\boldsymbol x=B\lambda\boldsymbol x\Leftrightarrow A(B\boldsymbol x)=\lambda(B\boldsymbol x)
+  $$
+  所以Bx也是矩阵A的特征向量。当矩阵A的特征值全不相同时，Bx只能是矩阵A特征值$\lambda$对应的特征向量，即Bx与x共线，有：
+  $$
+  B\boldsymbol x=\mu\boldsymbol x
+  $$
+  即x也是矩阵B的特征向量。
+
+-----------------------------------------***----------------------------------------------
+
+命题：矩阵AB和BA有相同的非零特征值
+
+证明：
+$$
+\begin{bmatrix}I&-A\\0&I\end{bmatrix}\begin{bmatrix}AB&0\\B&0\end{bmatrix}\begin{bmatrix}I&A\\0&I\end{bmatrix}=\begin{bmatrix}0&0\\B&BA\end{bmatrix}\ \begin{bmatrix}m\times m&m\times n\\n\times m&n\times n\end{bmatrix}
+$$
+可以得到：
+$$
+\begin{bmatrix}I&-A\\0&I\end{bmatrix}\begin{bmatrix}I&A\\0&I\end{bmatrix}=\begin{bmatrix}I&\\&I\end{bmatrix}\to \begin{bmatrix}AB&0\\B&0\end{bmatrix}\sim\begin{bmatrix}0&0\\B&BA\end{bmatrix}\ \begin{bmatrix}m\times m&m\times n\\n\times m&n\times n\end{bmatrix}
+$$
+由矩阵相似，矩阵$E=\begin{bmatrix}AB&0\\B&0\end{bmatrix}$和$F=\begin{bmatrix}0&0\\B&BA\end{bmatrix}$的特征值相等。而E的特征值为AB的特征值加上n个零；F的特征值为BA的特征值加上m个零。$\to$AB和BA有相同的非零特征值。
+
+-----------------------------------------***----------------------------------------------
+
 ## 矩阵的奇异值分解
+
+一般情况下，矩阵特征值分解并不总是成立，“完美的对角化”并不存在。但是对于一般的矩阵，我们总是可以对其进行奇异值分解(SVD: singular value decomposition)。
+
+对$m\times n$阶矩阵A,当rank(A)=r时，记
+
+- 矩阵A列空间的一组标准正交基为：$\boldsymbol u_1,\cdots,\boldsymbol u_r\in C(A)\subseteq R^m$
+- 矩阵A左零空间的一组标准正交基为：$\boldsymbol u_{r+1},\cdots,\boldsymbol u_m\in N(A^T) \subseteq R^m$
+- 矩阵A行空间的一组标准正交基为：$\boldsymbol v_1,\cdots,\boldsymbol v_r\in C(A^T)\subseteq R^n$
+- 矩阵A零空间的一组标准正交基为：$\boldsymbol v_{r+1},\cdots,\boldsymbol v_n\in N(A)\subseteq R^n$
+
+
+
+取矩阵A行空间中的元素$\boldsymbol v$，有$A\boldsymbol v\neq0$，所以$A\boldsymbol v$总是在矩阵A的列空间中，即存在映射关系：$\boldsymbol v\in C(A)\xrightarrow{v=Au}\boldsymbol u\in C(A^T)$。那么，对矩阵列空间中的标准基，就有：
+$$
+\begin{gather}
+A\boldsymbol v_1=\sigma_1\boldsymbol u_1\\
+A\boldsymbol v_2=\sigma_2\boldsymbol u_2\\
+\cdots\\
+A\boldsymbol v_r=\sigma_r\boldsymbol u_r\\
+\end{gather}
+$$
+所以我们总能通过这样的映射关系，使得矩阵行空间标准正交基与列空间中一组标准基建立映射关系，其中$\sigma_1,\cdots,\sigma_r$就称作是矩阵A的奇异值。写成矩阵的表达形式，有：
+$$
+\begin{aligned}
+A\begin{bmatrix}\boldsymbol v_1&\cdots&\boldsymbol v_r\end{bmatrix}&=\begin{bmatrix}\boldsymbol u_1&\cdots&\boldsymbol u_r\end{bmatrix}\begin{bmatrix}\sigma_1&&\\&\ddots&&\\&&\sigma_r\end{bmatrix}
+\Leftrightarrow A_{m\times n}V_{n\times r}= U_{m\times r}\Sigma_{r\times r}
+\end{aligned}
+$$
+考察变换后的$\boldsymbol u_1,\cdots,\boldsymbol u_r$，有：
+$$
+\begin{aligned}
+\boldsymbol u_i^T\boldsymbol u_j=\left(\frac{A\boldsymbol v_i}{\sigma_i}\right)^T\left(\frac{A\boldsymbol v_j}{\sigma_j}\right)&=\frac{\boldsymbol v_i^TA^TA\boldsymbol v_j}{\sigma_i\sigma_j}
+\\&=\frac{\boldsymbol v_i^T\left(\sigma_1^2\boldsymbol v_1\boldsymbol v_1^T+\cdots+\sigma_r^2\boldsymbol v_r\boldsymbol v_r^T \right)\boldsymbol v_j}{\sigma_i\sigma_j}
+\\&=\frac{\sigma_j^2}{\sigma_i\sigma_j}\boldsymbol v_i^T\boldsymbol v_j
+\\&=0
+\end{aligned}
+$$
+即矩阵A行空间的标准基映射后得到的列空间的标准基也是互相正交的，即$\boldsymbol u_1,\cdots,\boldsymbol u_r$为矩阵A列空间的标准正交基。
+
+取矩阵零空间和矩阵左零空间中的各一组标准正交基础对表达式进行扩充，就有：
+$$
+A\begin{bmatrix}\boldsymbol v_1\cdots\boldsymbol v_r\cdots\boldsymbol v_n\end{bmatrix}=\begin{bmatrix}\boldsymbol u_1\cdots\boldsymbol u_1\cdots\boldsymbol u_m\end{bmatrix}\begin{bmatrix}\sigma_1&&\\&\ddots&\\&&\sigma_r&\\&&&&\end{bmatrix}\Leftrightarrow A_{m\times n}V_{n\times n}= U_{m\times m}\Sigma_{m\times n}
+$$
+于是就得到矩阵的奇异值分解表达式：
+$$
+\begin{aligned}
+A&=U\Sigma V^{-1}=U\Sigma V^{T}
+\\&=\sigma_1\boldsymbol u_1\boldsymbol v_1^T+\cdots+\sigma_r\boldsymbol u_r\boldsymbol v_r^T
+\end{aligned}
+$$
+为了简化处理，通常规定：
+$$
+\sigma_1\geq\sigma_2\geq\cdots\geq\sigma_r> 0
+$$
+
+-----------------------------------------***----------------------------------------------
+
+- 考察对称矩阵$AA^T$，有：
+  $$
+  \begin{aligned}
+  AA^T&=(U\Sigma V^{T})(U\Sigma V^{T})^T
+  \\&=U\Sigma\Sigma^TU^T
+  \\&=\begin{bmatrix}\boldsymbol u_1\cdots\boldsymbol u_r\cdots\boldsymbol u_m\end{bmatrix}\begin{bmatrix}\sigma _1^2&&\\&\ddots&\\&&\sigma_r^2\\&&&\boldsymbol O\end{bmatrix}\begin{bmatrix}\boldsymbol u_1^T\\\vdots\\\boldsymbol u_r^T\\\vdots\\\boldsymbol u_m\end{bmatrix}
+  \\&=\sigma_1^2\boldsymbol u_1\boldsymbol u_1^T+\cdots+\sigma_r^2\boldsymbol u_r\boldsymbol u_r^T
+  \end{aligned}
+  $$
+  所以$\sigma^2$是$AA^T$的特征值。
+
+- 考察对称矩阵$A^TA$，有：
+  $$
+  \begin{aligned}
+  A^TA&=(U\Sigma V^{T})^T(U\Sigma V^{T})
+  \\&=V\Sigma\Sigma^TV^T
+  \\&=\begin{bmatrix}\boldsymbol v_1\cdots\boldsymbol v_r\cdots\boldsymbol v_n\end{bmatrix}\begin{bmatrix}\sigma_1^2&&\\&\ddots&\\&&\sigma_r^2\\&&&\boldsymbol O\end{bmatrix}\begin{bmatrix}\boldsymbol v_1^T\\\vdots\\\boldsymbol v_r^T\\\vdots\\\boldsymbol v_n^T\end{bmatrix}
+  \\&=\sigma_1^2\boldsymbol v_1\boldsymbol v_1^T+\cdots+\sigma_r^2\boldsymbol v_r\boldsymbol v_r^T
+  \end{aligned}
+  $$
+  所以$\sigma^2$也是$A^TA$的特征值。[不难看出对称矩阵$AA^T$​和$A^TA$​有相同的特征值。](# 可交换矩阵)
+
+-----------------------------------------***----------------------------------------------
 
 ## 左逆、右逆和伪逆
 
@@ -800,10 +916,15 @@ $$
    $$
    显然，这也是一个[投影矩阵](# 投影矩阵)，为矩阵行空间上的投影矩阵，总是想“靠近”单位阵。
    
-3. 当矩阵行列均不满秩时，即rank(A)=r<min(m,n)，矩阵的伪逆(pseudo-inverse)是结合线性变换来得到的
+3. 当矩阵行列均不满秩时，即rank(A)=r<min(m,n)，矩阵的伪逆(pseudo-inverse)是结合线性变换定义的。
 
+   矩阵行空间中的向量经过线性映射得到矩阵列空间中的向量时，$v\in C(A)\xrightarrow{u=Av} u\in C(A^T)$,我们希望与映射$f:u=Av$有一个与之对应的逆过程$f^+:v=A^+(Au)$，可以由列空间中的向量得到行空间中的向量。所以就有矩阵A伪逆的定义为：
    
-
+   设矩阵$A$有奇异值分解式$A=U\Sigma V^T$,那么有：
+   $$
+   A^+A=\begin{bmatrix}I_r&&\\&\ddots&\\&&0\end{bmatrix}\to A^+=V\begin{bmatrix}\frac{1}{\sigma_1}&&\\&\ddots&\\&&\frac{1}{\sigma_r}\end{bmatrix}U^T
+   $$
+   
 
 # 矩阵分解
 
@@ -813,15 +934,11 @@ $$
 
 [当矩阵恰好有n个线性无关的特征向量时，矩阵可对角化。矩阵有特征值分解：$A=X\Lambda X^{-1}$。](#矩阵对角化)
 
+## [QR分解](# 格拉姆-施密特正交化)
+
+[当矩阵恰好有n个线性无关的特征向量时，进行施密特正交化，得到的就是QR分解。](# 格拉姆-施密特正交化)
+
 ## [奇异值分解](#矩阵的奇异值分解)
-
-
-
-## QR分解
-
-
-
-
 
 
 
