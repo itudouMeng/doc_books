@@ -17,7 +17,8 @@
 |   |   |-- refelction-matrix.svg
 |   |   |-- rotate-matrix.png
 |   |   `-- spherical-coordinate.png
-|   `-- linear-algebra.md
+|   |-- linear-algebra.md
+|   `-- tri-geometry.ggb
 |-- physics
 |   |-- polar-coordinate.assets
 |   |   |-- polar-coordinate.svg
@@ -31,5 +32,5 @@
     |-- prism.css
     `-- prism.js
 
-7 directories, 22 files
+7 directories, 23 files
 ```
