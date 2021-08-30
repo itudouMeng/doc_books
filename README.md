@@ -12,6 +12,7 @@
 |-- math
 |   |-- linear-algebra.assets
 |   |   |-- 4-subspaces.png
+|   |   |-- image-20210829201902089.png
 |   |   |-- projection-onto-column-space.png
 |   |   |-- projection-onto-line.png
 |   |   |-- refelction-matrix.svg
@@ -32,5 +33,5 @@
     |-- prism.css
     `-- prism.js
 
-7 directories, 23 files
+7 directories, 24 files
 ```

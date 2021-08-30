@@ -638,11 +638,80 @@ $$
 > $$
 > Explain that last step by using the Schwarz inequality$|u^Tv|\leq \Vert u \Vert\Vert v \vert$.Then Heisenberg's inequality says that $\Vert Ax \Vert/\Vert x \Vert$ times $\Vert Bx \Vert/\Vert x \Vert$​is at least ½­ It is impossible to get the position error and momentum error both very small.
 
+## 左逆、右逆和伪逆
+
+当方阵可逆时，其逆矩阵存在，定义为$A^{-1}$,满足关系式：$AA^{-1}=A^{-1}A=I$，其中，$I$为单位阵。当矩阵为一般矩阵时，我们仍希望对矩阵乘法存在一个“单位元”的形式。
+
+现在考虑一般情形，对$m\times n$阶矩阵$A$，有：
+
+1. 当矩阵列满秩时,即$rank(A)=n<m$，矩阵左逆定义为： 
+
+   $$
+   A^{-1}_{left}=(A^TA)^{-1}A^T\to A^{-1}_{left}A=I_{n\times n}
+   $$
+   
+   此时，矩阵右乘其左逆时，得到：
+   $$
+   AA_{left}^{-1}=A(A^TA)^{-1}A^T
+   $$
+   显然，这是一个[投影矩阵](# 投影矩阵)，为矩阵列空间上的投影，这里我们可以看出矩阵列空间上的投影矩阵总是想“靠近”单位阵。
+   
+2. 当矩阵行满秩时，即$rank(A)=m<n$,矩阵右逆定义为：
+
+   $$
+   A_{right}^{-1}=A^T(AA^T)^{-1}\to AA_{right}^{-1}=I_{m\times m}
+   $$
+   
+   此时，矩阵左乘其右逆时，得到：
+   $$
+   A_{right}^{-1}A=A^T(AA^T)^{-1}A
+   $$
+   显然，这也是一个[投影矩阵](# 投影矩阵)，为矩阵行空间上的投影矩阵，总是想“靠近”单位阵。
+   
+3. 当矩阵行列均不满秩时，即rank(A)=r<min(m,n)，矩阵的伪逆(pseudo-inverse)是结合线性变换定义的。
+
+   矩阵行空间中的向量经过线性映射得到矩阵列空间中的向量时，$v\in C(A)\xrightarrow{u=Av} u\in C(A^T)$,我们希望与映射$f:u=Av$有一个与之对应的逆过程$f^+:v=A^+(Au)$，可以由列空间中的向量得到行空间中的向量。所以就有矩阵A伪逆的定义为：
+   
+   设矩阵$A$有奇异值分解式$A=U\Sigma V^T$,那么有：
+   $$
+   \begin{aligned}
+   &\begin{cases}
+   \Sigma^+\Sigma=\begin{bmatrix}I_r&&\\&\ddots&\\&&0\end{bmatrix}_{n\times n}
+   \\\Sigma\Sigma^+=\begin{bmatrix}I_r&&\\&\ddots&\\&&0\end{bmatrix}_{m\times m}
+   \end{cases}
+   \to\Sigma^+=\begin{bmatrix}\frac{1}{\sigma_1}&&\\&\ddots&\\&&\frac{1}{\sigma_r}\\&&&\end{bmatrix}_{n\times m}
+   \to A^+=V\Sigma^+ U^T
+   \\&\Rightarrow\begin{cases}
+   AA^+=U\Sigma\Sigma^+ U^T=U\begin{bmatrix}I_r&&\\&\ddots&\\&&0\end{bmatrix}U^T=\boldsymbol u_1\boldsymbol u_1^T+\cdots+\boldsymbol u_r\boldsymbol u_r^T
+   \\A^+A=V\Sigma^+\Sigma V^T=V\begin{bmatrix}I_r&&\\&\ddots&\\&&0\end{bmatrix}V^T=\boldsymbol v_1\boldsymbol v_1^T+\cdots+\boldsymbol v_r\boldsymbol v_r^T
+   \end{cases}
+   \\&\Rightarrow\begin{cases}
+   AA^+A=U(\Sigma\Sigma^+\Sigma)V^T=U\Sigma V^T=A\\
+   A^+AA^+=V(\Sigma^+\Sigma\Sigma^+)V^T=V\Sigma V^T=A^+
+   \end{cases}
+   \end{aligned}
+   $$
+   
+
+# 矩阵分解
+
+## LU分解
+
+高斯消元法的过程就是得到矩阵的LU分解。
+
+## Cholesky分解
 
 
 
+## [特征值分解](#矩阵对角化)
 
-## 矩阵的奇异值分解
+[当矩阵恰好有n个线性无关的特征向量时，矩阵可对角化。矩阵有特征值分解：$A=X\Lambda X^{-1}$。](#矩阵对角化)
+
+## [QR分解](# 格拉姆-施密特正交化)
+
+[当矩阵恰好有n个线性无关的特征向量时，进行施密特正交化，得到的就是QR分解。](# 格拉姆-施密特正交化)
+
+## 奇异值分解
 
 一般情况下，矩阵特征值分解并不总是成立，“完美的对角化”并不存在。但是对于一般的矩阵，我们总是可以对其进行奇异值分解(SVD: singular value decomposition)。
 
@@ -652,8 +721,6 @@ $$
 - 矩阵A左零空间的一组标准正交基为：$\boldsymbol u_{r+1},\cdots,\boldsymbol u_m\in N(A^T) \subseteq R^m$
 - 矩阵A行空间的一组标准正交基为：$\boldsymbol v_1,\cdots,\boldsymbol v_r\in C(A^T)\subseteq R^n$
 - 矩阵A零空间的一组标准正交基为：$\boldsymbol v_{r+1},\cdots,\boldsymbol v_n\in N(A)\subseteq R^n$
-
-
 
 取矩阵A行空间中的元素$\boldsymbol v$，有$A\boldsymbol v\neq0$，所以$A\boldsymbol v$总是在矩阵A的列空间中，即存在映射关系：$\boldsymbol v\in C(A)\xrightarrow{v=Au}\boldsymbol u\in C(A^T)$。那么，对矩阵列空间中的标准基$\boldsymbol v_1,\cdots,\boldsymbol v_r$，就有：
 $$
@@ -726,78 +793,7 @@ $$
 
 -----------------------------------------***----------------------------------------
 
-## 左逆、右逆和伪逆
-
-当方阵可逆时，其逆矩阵存在，定义为$A^{-1}$,满足关系式：$AA^{-1}=A^{-1}A=I$，其中，$I$为单位阵。当矩阵为一般矩阵时，我们仍希望对矩阵乘法存在一个“单位元”的形式。
-
-现在考虑一般情形，对$m\times n$阶矩阵$A$，有：
-
-1. 当矩阵列满秩时,即$rank(A)=n<m$，矩阵左逆定义为： 
-
-   $$
-   A^{-1}_{left}=(A^TA)^{-1}A^T\to A^{-1}_{left}A=I_{n\times n}
-   $$
-   
-   此时，矩阵右乘其左逆时，得到：
-   $$
-   AA_{left}^{-1}=A(A^TA)^{-1}A^T
-   $$
-   显然，这是一个[投影矩阵](# 投影矩阵)，为矩阵列空间上的投影，这里我们可以看出矩阵列空间上的投影矩阵总是想“靠近”单位阵。
-   
-2. 当矩阵行满秩时，即$rank(A)=m<n$,矩阵右逆定义为：
-
-   $$
-   A_{right}^{-1}=A^T(AA^T)^{-1}\to AA_{right}^{-1}=I_{m\times m}
-   $$
-   
-   此时，矩阵左乘其右逆时，得到：
-   $$
-   A_{right}^{-1}A=A^T(AA^T)^{-1}A
-   $$
-   显然，这也是一个[投影矩阵](# 投影矩阵)，为矩阵行空间上的投影矩阵，总是想“靠近”单位阵。
-   
-3. 当矩阵行列均不满秩时，即rank(A)=r<min(m,n)，矩阵的伪逆(pseudo-inverse)是结合线性变换定义的。
-
-   矩阵行空间中的向量经过线性映射得到矩阵列空间中的向量时，$v\in C(A)\xrightarrow{u=Av} u\in C(A^T)$,我们希望与映射$f:u=Av$有一个与之对应的逆过程$f^+:v=A^+(Au)$，可以由列空间中的向量得到行空间中的向量。所以就有矩阵A伪逆的定义为：
-   
-   设矩阵$A$有奇异值分解式$A=U\Sigma V^T$,那么有：
-   $$
-   \begin{aligned}
-   &\begin{cases}
-   \Sigma^+\Sigma=\begin{bmatrix}I_r&&\\&\ddots&\\&&0\end{bmatrix}_{n\times n}
-   \\\Sigma\Sigma^+=\begin{bmatrix}I_r&&\\&\ddots&\\&&0\end{bmatrix}_{m\times m}
-   \end{cases}
-   \to\Sigma^+=\begin{bmatrix}\frac{1}{\sigma_1}&&\\&\ddots&\\&&\frac{1}{\sigma_r}\\&&&\end{bmatrix}_{n\times m}
-   \to A^+=V\Sigma^+ U^T
-   \\&\Rightarrow\begin{cases}
-   AA^+=U\Sigma\Sigma^+ U^T=U\begin{bmatrix}I_r&&\\&\ddots&\\&&0\end{bmatrix}U^T=\boldsymbol u_1\boldsymbol u_1^T+\cdots+\boldsymbol u_r\boldsymbol u_r^T
-   \\A^+A=V\Sigma^+\Sigma V^T=V\begin{bmatrix}I_r&&\\&\ddots&\\&&0\end{bmatrix}V^T=\boldsymbol v_1\boldsymbol v_1^T+\cdots+\boldsymbol v_r\boldsymbol v_r^T
-   \end{cases}
-   \\&\Rightarrow\begin{cases}
-   AA^+A=U(\Sigma\Sigma^+\Sigma)V^T=U\Sigma V^T=A\\
-   A^+AA^+=V(\Sigma^+\Sigma\Sigma^+)V^T=V\Sigma V^T=A^+
-   \end{cases}
-   \end{aligned}
-   $$
-   
-
-# 矩阵分解
-
-## LU分解
-
-## Cholesky分解
-
-
-
-## [特征值分解](#矩阵对角化)
-
-[当矩阵恰好有n个线性无关的特征向量时，矩阵可对角化。矩阵有特征值分解：$A=X\Lambda X^{-1}$。](#矩阵对角化)
-
-## [QR分解](# 格拉姆-施密特正交化)
-
-[当矩阵恰好有n个线性无关的特征向量时，进行施密特正交化，得到的就是QR分解。](# 格拉姆-施密特正交化)
-
-## [奇异值分解](#矩阵的奇异值分解)
+## Jordan标准型
 
 # 特殊矩阵
 
@@ -995,9 +991,9 @@ $$
 \end{cases}
 $$
 
-## 三对角矩阵
+## 三对角Toplitz矩阵
 
-对于一般的n阶三对角矩阵S有如下形式：
+对于一般的n阶三对角Toplitz矩阵S有如下形式：
 $$
 S_n=\begin{bmatrix}a&c\\b&a&c\\&\ddots&\ddots&\ddots\\&&b&a&c\\&&&b&a\end{bmatrix}_{n\times n}
 $$
@@ -1051,7 +1047,7 @@ p_n(\lambda)=\frac{\lambda_{1A}^{n+1}-\lambda_{2A}^{n+1}}{\lambda_{1A}-\lambda_{
 $$
 因为$\lambda_{1A}\neq\lambda_{2A}$，不失一般性，设$\lambda_{2A}\neq0$，有：
 $$
-p_n(\lambda)=\frac{(\frac{\lambda_{1A}}{\lambda_{2A}})^{n+1}-1}{(\frac{\lambda_{1A}}{\lambda_{2A}})-1}=0\to \frac{\lambda_{1A}}{\lambda_{2A}}=e^{i\frac{2k\pi}{n+1}},k\in[1,2,\cdots,n]
+p_n(\lambda)=\lambda_{2A}^n\cdot\frac{(\frac{\lambda_{1A}}{\lambda_{2A}})^{n+1}-1}{(\frac{\lambda_{1A}}{\lambda_{2A}})-1}=0\to \frac{\lambda_{1A}}{\lambda_{2A}}=e^{i\frac{2k\pi}{n+1}},k\in[1,2,\cdots,n]
 $$
 代入矩阵A根与系数之间的关系式，就可以反求得到$\lambda$表达式为：
 $$
@@ -1089,12 +1085,64 @@ c_2=1\\
 $$
 此时可以得到$b=0\ or\ c=0$，此时矩阵为上三角矩阵或者下三角矩阵。
 
------------------------------------------***-----------------------------------------
+
+### 图像处理
 
 三对角对称矩阵(symmetric tridiagonal matrix)在图像压缩处理方面有着应用。
+
+n阶下三角矩阵A(元素全为1)，有一些很好的性质。矩阵A的逆矩阵为一个特殊的下三角矩阵(主对角元素是1，次对角元素是-1)：
 $$
-S=\begin{bmatrix}2&-1&\\-1&2&-1\\&-1&2&-1\\&&-1&2\end{bmatrix}
+A=\begin{bmatrix}1\\1&1\\1&1&1\\\vdots&\vdots&\vdots&\ddots\\1&1&1&\cdots&1\end{bmatrix}\to A^{-1}=\begin{bmatrix}1\\-1&1\\&-1&1\\&&\ddots&\ddots\\&&&-1&1\end{bmatrix}
 $$
+分析矩阵的奇异值，有：
+$$
+\begin{gather}
+AA^T=\begin{bmatrix}1&1&1&\cdots&1\\1&2&2&\cdots&2\\1&2&3&\cdots&3\\\vdots&\vdots&\vdots&\ddots&\vdots\\1&2&3&\cdots&n\end{bmatrix}\to(AA^T)^{-1}=\begin{bmatrix}2&-1&&\\-1&2&-1\\&\ddots&\ddots&\ddots\\&&-1&2&-1\\&&&-1&1\end{bmatrix}\\
+A^TA=\begin{bmatrix}n&n-1&n-2&\cdots&1\\n-1&n-1&n-2&\cdots&2\\n-2&n-2&n-2&\cdots&3\\\vdots&\vdots&\vdots&\ddots&\vdots\\1&1&1&\cdots&1\end{bmatrix}\to(A^TA)^{-1}=\begin{bmatrix}1&-1&&\\-1&2&-1\\&\ddots&\ddots&\ddots\\&&-1&2&-1\\&&&-1&2\end{bmatrix}
+\end{gather}
+$$
+用处理三对角矩阵同样的方法，我们可以求得$(AA^T)^{-1}$的特征值。记$(AA^T)^{-1}$特征多项式为：$p_n(\lambda)=det(AA^T-\lambda I)$，展开有递推关系式:
+$$
+\begin{cases}\begin{aligned}
+\begin{bmatrix}p_{n}(\lambda)\\p_{n-1}(\lambda)\end{bmatrix}&=\begin{bmatrix}2-\lambda&-1\\1&0\end{bmatrix}\begin{bmatrix}p_{n-1}(\lambda)\\p_{n-2}(\lambda)\end{bmatrix}\\
+p_1(\lambda)&=1-\lambda\\
+p_2(\lambda)&=\begin{vmatrix}2-\lambda&-1\\-1&1-\lambda\end{vmatrix}=(2-\lambda)(1-\lambda)-1\\
+p_0(\lambda)&=1
+\end{aligned}\end{cases}
+$$
+系数矩阵$S=\begin{bmatrix}2-\lambda&-1\\1&0\end{bmatrix}$的特征方程为：$\lambda_S^2-(2-\lambda)\lambda_S-1=0$，由二次函数判别式易知特征方程肯定有两个不同的根，就有：
+$$
+\begin{cases}\begin{aligned}
+p_n(\lambda)&=c_1\lambda_{1S}^{n}+c_2\lambda_{2S}^{n}\\
+\lambda_{1S}+\lambda_{2S}&=2-\lambda\\
+\lambda_{1S}\lambda_{2S}&=1
+\end{aligned}\end{cases}\xrightarrow{p_0(\lambda)=1,p_1(\lambda)=1-\lambda}
+\begin{cases}
+c_1=\frac{\lambda_{1S}-1}{\lambda_{1S}-\lambda_{2S}}\\
+c_2=\frac{\lambda_{2S}-1}{\lambda_{2S}-\lambda_{1S}}
+\end{cases}
+\\\to
+\begin{aligned}p_n(\lambda)&=\frac{\lambda_{1S}-1}{\lambda_{1S}-\lambda_{2S}}\lambda_{1S}^n-\frac{\lambda_{2S}-1}{\lambda_{1S}-\lambda_{2S}}\lambda_{2S}^n\\
+&=\frac{(\lambda_{1S}^{n+1}-\lambda_{2S}^{n+1})-(\lambda_{1S}^{n}-\lambda_{2S}^{n})}{\lambda_{1S}-\lambda_{2S}}
+\\&=0
+\end{aligned}
+$$
+上式在复数域内有解，设$\lambda_{1S}=e^{i\theta}$和$\lambda_{2S}=e^{-i\theta},\theta\in[0,2\pi]$，代入特征多项式的表达式，有：
+$$
+\begin{aligned}
+\frac{2i\sin(n+1)\theta-2i\sin n\theta}{2i\sin\theta}=\frac{2\cos\frac{2n+1}{2}\theta\cdot\sin\frac{1}{2}\theta}{\sin\theta}=0&\to\frac{2n+1}{2}\theta=k\pi-\frac{\pi}{2}
+\\&\to\theta=\frac{2k-1}{2n+1}\pi,k\in[1,2,\cdots,n]
+\end{aligned}
+$$
+得到$(AA^T)^{-1}$的特征值为：
+$$
+\lambda=2-2\cos(\frac{2k-1}{2n+1}\pi),k\in[1,2,\cdots,n]
+$$
+于是$AA^T$的特征值和矩阵A的奇异值就为：
+$$
+\frac{1}{\lambda}=\frac{1}{2-2\cos\theta}=\frac{1}{4\sin^2(\theta/2)}\to\sigma=\sqrt{\frac{1}{\lambda}}=\frac{1}{2\sin(\theta/2)}=\frac{1}{2\sin(\frac{2k-1}{2(2n+1)})\pi}\quad k\in[1,2,\cdots,n]
+$$
+![image-20210829201902089](linear-algebra.assets/image-20210829201902089.png)
 
 -----------------------------------------***-----------------------------------------
 
