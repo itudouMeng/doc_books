@@ -9,17 +9,23 @@
 |-- history
 |   |-- 1914-1918.xmind
 |   |-- WWI-WWII.assets
+|   |   |-- 21Ìõ.jpg
 |   |   |-- Belgium_communities.png
 |   |   |-- Belgium_regions.png
 |   |   |-- Coat_of_Arms_of_the_Russian_Federation.svg
+|   |   |-- Coat_of_arms_of_the_Ottoman_Empire_(1882¨C1922).svg
 |   |   |-- EU-Belgium.svg
 |   |   |-- Flag_of_Belgium.svg
 |   |   |-- Flag_of_Russia.svg
+|   |   |-- Flag_of_Turkey.svg
+|   |   |-- German_losses_after_WWI.svg
 |   |   |-- Great_coat_of_arms_of_Belgium.svg
 |   |   |-- Grossgliederung_Europas-en.svg
 |   |   |-- Map_Europe_alliances_1914-en.svg
 |   |   |-- Map_of_federal_subjects_of_Russia_(2014).svg
-|   |   `-- Russia.svg
+|   |   |-- Polish_Corridor.png
+|   |   |-- Russia.svg
+|   |   `-- Turkey.svg
 |   `-- WWI-WWII.md
 |-- images
 |   `-- meng.jfif
@@ -48,5 +54,5 @@
     |-- prism.css
     `-- prism.js
 
-9 directories, 37 files
+9 directories, 43 files
 ```
