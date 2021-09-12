@@ -1,26 +1,26 @@
 {
   "main": {
-    "id": "ab2abc0381812da8",
+    "id": "5c314e0e3edeff98",
     "type": "split",
     "children": [
       {
-        "id": "6fb48dc708e84f9a",
+        "id": "239665ba8bea5360",
         "type": "leaf",
         "state": {
           "type": "markdown",
           "state": {
-            "file": "math/linear-algebra.md",
+            "file": "history/WWI-WWII.md",
             "mode": "source"
           }
         }
       },
       {
-        "id": "6fa7087181f546c3",
+        "id": "192556de4515ab71",
         "type": "leaf",
         "state": {
           "type": "markdown",
           "state": {
-            "file": "math/linear-algebra.md",
+            "file": "history/WWI-WWII.md",
             "mode": "preview"
           }
         }
@@ -29,15 +29,15 @@
     "direction": "vertical"
   },
   "left": {
-    "id": "d8e399c49c24f7a2",
+    "id": "5c4ccf2268ab6fb8",
     "type": "split",
     "children": [
       {
-        "id": "ba8fe476ab24ddbc",
+        "id": "63c9366858f07439",
         "type": "tabs",
         "children": [
           {
-            "id": "3b9c71cff5d7737b",
+            "id": "f727d6bd7ca787c0",
             "type": "leaf",
             "state": {
               "type": "file-explorer",
@@ -45,7 +45,7 @@
             }
           },
           {
-            "id": "3953a1ab83a3cd91",
+            "id": "c2af6b028ca379de",
             "type": "leaf",
             "state": {
               "type": "search",
@@ -63,41 +63,30 @@
       }
     ],
     "direction": "horizontal",
-    "width": 226
+    "width": 283
   },
   "right": {
-    "id": "cf70e744e36cb173",
+    "id": "269e1f6cc97c73e1",
     "type": "split",
     "children": [
       {
-        "id": "b437dc1537ddd777",
+        "id": "df195e6257cb2d6c",
         "type": "tabs",
         "children": [
           {
-            "id": "539361c9ef99aad5",
+            "id": "ab63da17a2d07289",
             "type": "leaf",
             "state": {
               "type": "backlink",
               "state": {
-                "file": "math/linear-algebra.md",
-                "collapseAll": true,
+                "file": "history/WWI-WWII.md",
+                "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
                 "showSearch": false,
                 "searchQuery": "",
-                "backlinkCollapsed": true,
+                "backlinkCollapsed": false,
                 "unlinkedCollapsed": true
-              }
-            }
-          },
-          {
-            "id": "055687e83b5453e7",
-            "type": "leaf",
-            "state": {
-              "type": "tag",
-              "state": {
-                "sortOrder": "frequency",
-                "useHierarchy": false
               }
             }
           }
@@ -105,10 +94,12 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
-  "active": "6fb48dc708e84f9a",
+  "active": "192556de4515ab71",
   "lastOpenFiles": [
+    "history/WWI-WWII.md",
     "math/linear-algebra.md"
   ]
 }
