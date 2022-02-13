@@ -817,7 +817,7 @@ A\boldsymbol x=\lambda \boldsymbol x&\to{\boldsymbol x}^HA\boldsymbol x={\boldsy
 \end{cases}\end{aligned}
 \to {\lambda}^H=\lambda
 $$
-​	由复数的性质可以得到特征值$\lambda$一定为实数。
+​	由复数的性质可以得到特征值$\lambda$​一定为实数。
 
 - 对称矩阵的不同特征值对应的特征向量相互正交
 
