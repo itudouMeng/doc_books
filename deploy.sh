@@ -4,7 +4,7 @@ sed -i '1i # SUMMARY\
 sed -i '$a ```' README.md
 
 git add .
-git commit -m "math"
+git commit -m "history"
 git push origin master
 
 docsify serve
