@@ -26,11 +26,16 @@
 |   |   |-- Polish_Corridor.png
 |   |   |-- Russia.svg
 |   |   `-- Turkey.svg
-|   `-- WWI-WWII.md
+|   |-- WWI-WWII.md
+|   |-- poem.assets
+|   |   |-- maozedong_0001.jpeg
+|   |   `-- ÆßÂÉ-Ô²Öñ.jpg
+|   `-- poem.md
 |-- images
 |   `-- meng.jfif
 |-- index.html
 |-- math
+|   |-- C++.md
 |   |-- linear-algebra.assets
 |   |   |-- 4-subspaces.png
 |   |   |-- image-20210829201902089.png
@@ -54,5 +59,5 @@
     |-- prism.css
     `-- prism.js
 
-9 directories, 43 files
+10 directories, 47 files
 ```
